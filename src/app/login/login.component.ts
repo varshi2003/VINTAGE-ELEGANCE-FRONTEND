@@ -25,7 +25,7 @@ export class LoginComponent {
       next: () => {
       
         if (this.authService.hasRole('ROLE_ADMIN')) {
-          this.router.navigate(['/admin/signup']);
+          this.router.navigate(['/admin/statistics']);
         } else if (this.authService.hasRole('ROLE_MODERATOR')) {
           this.router.navigate(['/moderator/signup']);
         } else {

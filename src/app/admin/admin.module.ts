@@ -1,0 +1,22 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { AdminRoutingModule } from './admin-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { StatisticsComponent } from './statistics/statistics.component';
+import { FranchiseManagementComponent } from './franchise-management/franchise-management.component';
+import { SalonManagementComponent } from './salon-management/salon-management.component';
+
+@NgModule({
+  declarations: [
+   
+  ],
+  imports: [
+    CommonModule,
+    AdminRoutingModule,
+    DashboardComponent,
+    StatisticsComponent,
+    FranchiseManagementComponent,
+    SalonManagementComponent
+  ]
+})
+export class AdminModule { }
