@@ -1,0 +1,32 @@
+<mat-toolbar color="primary" class="navbar">
+  <img src="vintage_elegance.png" alt="Vintage Elegance" class="logo" />
+  <span class="spacer"></span>
+  <button mat-button routerLink="/">Home</button>
+
+  <mat-menu #servicesMenu="matMenu">
+    <button mat-menu-item routerLink="/haircare">Haircare</button>
+    <button mat-menu-item routerLink="/skincare">Skincare</button>
+    <button mat-menu-item routerLink="/bodycare">Bodycare</button>
+  </mat-menu>
+
+  <button mat-button [matMenuTriggerFor]="servicesMenu">Services</button>
+  <button mat-button routerLink="/salon-locator">Salon Locator</button>
+  <button mat-button routerLink="/pricing">Pricing</button>
+  <button mat-button routerLink="/franchise">Franchise</button>
+  <button mat-button routerLink="/bridal">Bridal</button>
+  <button mat-button routerLink="/contact-us">Contact Us</button>
+
+  <ng-container *ngIf="currentUser$ | async as user; else loginTpl">
+    <button mat-button (click)="logout()">Logout</button>
+    <button mat-button routerLink="/admin/signup" *ngIf="authService.hasRole('ROLE_ADMIN')">
+      Create Moderator
+    </button>
+    <button mat-button routerLink="/moderator/signup" *ngIf="authService.hasRole('ROLE_MODERATOR')">
+      Create User
+    </button>
+  </ng-container>
+
+  <ng-template #loginTpl>
+    <button mat-button routerLink="/login">Login</button>
+  </ng-template>
+</mat-toolbar>
