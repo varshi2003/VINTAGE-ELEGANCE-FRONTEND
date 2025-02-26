@@ -17,13 +17,14 @@
   <button mat-button routerLink="/contact-us">Contact Us</button>
 
   <ng-container *ngIf="currentUser$ | async as user; else loginTpl">
-    <button mat-button (click)="logout()">Logout</button>
+    
     <button mat-button routerLink="/admin/signup" *ngIf="authService.hasRole('ROLE_ADMIN')">
       Create Moderator
     </button>
     <button mat-button routerLink="/moderator/signup" *ngIf="authService.hasRole('ROLE_MODERATOR')">
       Create User
     </button>
+    <button mat-button (click)="logout()">Logout</button>
   </ng-container>
 
   <ng-template #loginTpl>

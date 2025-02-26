@@ -2,13 +2,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, NgIf, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
@@ -18,6 +18,13 @@ export class LoginComponent {
   error = '';
 
   constructor(private authService: AuthService, private router: Router) {}
+  togglePassword(): void {
+    const passwordField = document.getElementById("password") as HTMLInputElement;
+    if (passwordField) {
+      passwordField.type = passwordField.type === "password" ? "text" : "password";
+    }
+  }
+  
 
   onSubmit(): void {
     this.error = '';

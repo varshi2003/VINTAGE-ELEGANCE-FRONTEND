@@ -1,1 +1,44 @@
 <p>salon-management </p>
+<div class="salon-list-container">
+  <h2>Salon Management</h2>
+  <button class="create-btn" (click)="createSalon()">Create Salon</button>
+  <table>
+    <thead>
+      <tr>
+        <th>State</th>
+        <th>City</th>
+        <th>Outlet</th>
+        <th>Services</th>
+        <th>Stylists (M/F)</th>
+        <th>Moderator</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let salon of salons">
+        <td>{{ salon.state }}</td>
+        <td>{{ salon.city }}</td>
+        <td>{{ salon.outletName }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let service of salon.services">{{ service.name }} - ${{ service.cost }}</li>
+          </ul>
+        </td>
+        <td>
+          M: {{ salon.maleStylists.join(', ') }} <br>
+          F: {{ salon.femaleStylists.join(', ') }}
+        </td>
+        <td>{{ salon.moderator }}</td>
+        <td>
+          <button (click)="editSalon(salon.id)">Edit</button>
+          <button (click)="deleteSalon(salon.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="pagination">
+    <button (click)="prevPage()" [disabled]="page === 0">Previous</button>
+    <span>Page {{ page + 1 }} of {{ totalPages }}</span>
+    <button (click)="nextPage()" [disabled]="page >= totalPages - 1">Next</button>
+  </div>
+</div>

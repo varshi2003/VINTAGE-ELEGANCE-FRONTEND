@@ -1,0 +1,69 @@
+.salon-list-container {
+  padding: 20px;
+  background-color: black;
+  color: gold;
+}
+
+h2 {
+  text-align: center;
+  color: white;
+}
+
+.create-btn {
+  background-color: gold;
+  color: black;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  float: right;
+  margin-bottom: 10px;
+}
+
+.create-btn:hover {
+  background-color: red;
+  color: white;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th {
+  background-color: red;
+  color: white;
+  padding: 10px;
+}
+
+tbody td {
+  padding: 10px;
+  border-bottom: 1px solid gold;
+}
+
+button {
+  margin: 5px;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.pagination {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.pagination button {
+  background-color: gold;
+  color: black;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.pagination span {
+  margin: 0 10px;
+}

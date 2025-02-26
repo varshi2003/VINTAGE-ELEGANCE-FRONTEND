@@ -6,7 +6,7 @@ $background-color: #fff;
 $highlight-color: #800000;
 .side-heading {
   font-family: "Noto Sans", serif;
-  font-weight: bold;
+  
 }
 .sidenav-container {
   height: 100vh;
@@ -59,6 +59,7 @@ $highlight-color: #800000;
 
       mat-icon {
         margin-right: 8px;
+        margin-bottom: -5px;
       }
 
       &:hover {
@@ -74,7 +75,7 @@ $highlight-color: #800000;
 
   .sidebar-footer {
     text-align: center;
-    font-size: 14px;
+    font-size: 16px;
     color: color.adjust($accent-color, $lightness: 20%);
     margin-top: 16px;
   }

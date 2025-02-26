@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { FranchiseManagementComponent } from './franchise-management/franchise-management.component';
 import { SalonManagementComponent } from './salon-management/salon-management.component';
+import { SalonCreateComponent } from './salon-create/salon-create.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SalonManagementComponent } from './salon-management/salon-management.co
     DashboardComponent,
     StatisticsComponent,
     FranchiseManagementComponent,
-    SalonManagementComponent
+    SalonManagementComponent,
+    SalonCreateComponent
   ]
 })
 export class AdminModule { }

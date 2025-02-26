@@ -1,0 +1,206 @@
+<!-- <form [formGroup]="salonForm" (ngSubmit)="saveSalon()">
+  <h2 class="title">Create a Salon</h2>
+
+  <div class="form-container">
+    <div class="form-group">
+      <label>State:</label>
+      <input formControlName="state" placeholder="Enter State" />
+      <div
+        *ngIf="
+          salonForm.get('state')?.invalid && salonForm.get('state')?.touched
+        "
+      >
+        <span class="error">State is required</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>City:</label>
+      <input formControlName="city" placeholder="Enter City" />
+      <div
+        *ngIf="salonForm.get('city')?.invalid && salonForm.get('city')?.touched"
+      >
+        <span class="error">City is required</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Outlet Name:</label>
+      <input formControlName="outletName" placeholder="Enter Outlet Name" />
+      <div
+        *ngIf="
+          salonForm.get('outletName')?.invalid &&
+          salonForm.get('outletName')?.touched
+        "
+      >
+        <span class="error">Outlet Name is required</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <label class="section-title">Services</label>
+      <div formArrayName="services">
+        <div
+          *ngFor="let service of services.controls; let i = index"
+          [formGroupName]="i"
+          class="service-row"
+        >
+          <input formControlName="name" placeholder="Service Name" />
+          <input formControlName="cost" type="number" placeholder="Cost" />
+          <select formControlName="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Unisex">Unisex</option>
+          </select>
+          <button type="button" class="remove-btn" (click)="removeService(i)">
+            Remove
+          </button>
+        </div>
+        <button type="button" class="add-btn" (click)="addService()">
+          + Add Service
+        </button>
+      </div>
+    </div>
+
+    <div class="section">
+      <label class="section-title">Male Stylists</label>
+      <div formArrayName="maleStylists">
+        <div
+          *ngFor="let stylist of maleStylists.controls; let i = index"
+          class="stylist-row"
+        >
+          <input [formControlName]="i" placeholder="Male Stylist" />
+          <button
+            type="button"
+            class="remove-btn"
+            (click)="removeMaleStylist(i)"
+          >
+            Remove
+          </button>
+        </div>
+        <button type="button" class="add-btn" (click)="addMaleStylist()">
+          + Add Male Stylist
+        </button>
+      </div>
+    </div>
+
+    <div class="section">
+      <label class="section-title">Female Stylists</label>
+      <div formArrayName="femaleStylists">
+        <div
+          *ngFor="let stylist of femaleStylists.controls; let i = index"
+          class="stylist-row"
+        >
+          <input [formControlName]="i" placeholder="Female Stylist" />
+          <button
+            type="button"
+            class="remove-btn"
+            (click)="removeFemaleStylist(i)"
+          >
+            Remove
+          </button>
+        </div>
+        <button type="button" class="add-btn" (click)="addFemaleStylist()">
+          + Add Female Stylist
+        </button>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Moderator:</label>
+      <input formControlName="moderator" placeholder="Enter Moderator Name" />
+      <div
+        *ngIf="
+          salonForm.get('moderator')?.invalid &&
+          salonForm.get('moderator')?.touched
+        "
+      >
+        <span class="error">Moderator is required</span>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn">Save Salon</button>
+  </div>
+</form> -->
+<form [formGroup]="salonForm" (ngSubmit)="saveSalon()">
+  <h2 class="title">Create a Salon</h2>
+
+  <div class="form-container">
+    <div class="form-group">
+      <label>State:</label>
+      <input formControlName="state" placeholder="Enter State" />
+      <div *ngIf="salonForm.get('state')?.invalid && salonForm.get('state')?.touched">
+        <span class="error">State is required</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>City:</label>
+      <input formControlName="city" placeholder="Enter City" />
+      <div *ngIf="salonForm.get('city')?.invalid && salonForm.get('city')?.touched">
+        <span class="error">City is required</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Outlet Name:</label>
+      <input formControlName="outletName" placeholder="Enter Outlet Name" />
+      <div *ngIf="salonForm.get('outletName')?.invalid && salonForm.get('outletName')?.touched">
+        <span class="error">Outlet Name is required</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <label class="section-title">Services</label>
+      <div formArrayName="services">
+        <div *ngFor="let service of services.controls; let i = index" [formGroupName]="i" class="service-row">
+          <input formControlName="name" placeholder="Service Name" />
+          <input formControlName="cost" type="number" placeholder="Cost" />
+          <select formControlName="gender"  >
+            <option value="" disabled selected>Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Unisex">Unisex</option>
+            <option value="Gender">Gender</option>
+          </select>
+          <button type="button" class="remove-btn" (click)="removeService(i)">Remove</button>
+        </div>
+        <button type="button" class="add-btn" (click)="addService()">+ Add Service</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <label class="section-title">Male Stylists</label>
+      <div formArrayName="maleStylists">
+        <div *ngFor="let stylist of maleStylists.controls; let i = index" class="stylist-row">
+          <input [formControlName]="i" placeholder="Male Stylist" />
+          <button type="button" class="remove-btn" (click)="removeMaleStylist(i)">Remove</button>
+        </div>
+        <button type="button" class="add-btn" (click)="addMaleStylist()">+ Add Male Stylist</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <label class="section-title">Female Stylists</label>
+      <div formArrayName="femaleStylists">
+        <div *ngFor="let stylist of femaleStylists.controls; let i = index" class="stylist-row">
+          <input [formControlName]="i" placeholder="Female Stylist" />
+          <button type="button" class="remove-btn" (click)="removeFemaleStylist(i)">Remove</button>
+        </div>
+        <button type="button" class="add-btn" (click)="addFemaleStylist()">+ Add Female Stylist</button>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Moderator:</label>
+      <input formControlName="moderator" placeholder="Enter Moderator Name" />
+      <div *ngIf="salonForm.get('moderator')?.invalid && salonForm.get('moderator')?.touched">
+        <span class="error">Moderator is required</span>
+      </div>
+    </div>
+
+    <div class="button-container">
+      <button type="submit" class="submit-btn">Save Salon</button>
+    </div>
+  </div>
+</form>

@@ -4,13 +4,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { FranchiseManagementComponent } from './franchise-management/franchise-management.component';
 import { SalonManagementComponent } from './salon-management/salon-management.component';
+import { SalonCreateComponent } from './salon-create/salon-create.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent, // The dashboard component includes the sidebar and a <router-outlet>
+    component: DashboardComponent, 
     children: [
       { path: '', redirectTo: 'statistics', pathMatch: 'full' },
+      { path: 'create-salon', component: SalonCreateComponent },
       { path: 'statistics', component: StatisticsComponent },
       { path: 'franchise', component: FranchiseManagementComponent },
       { path: 'salon-management', component: SalonManagementComponent }
