@@ -6,6 +6,7 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { FranchiseManagementComponent } from './franchise-management/franchise-management.component';
 import { SalonManagementComponent } from './salon-management/salon-management.component';
 import { SalonCreateComponent } from './salon-create/salon-create.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SalonCreateComponent } from './salon-create/salon-create.component';
     StatisticsComponent,
     FranchiseManagementComponent,
     SalonManagementComponent,
-    SalonCreateComponent
+    SalonCreateComponent,
+    HttpClientModule
   ]
 })
 export class AdminModule { }

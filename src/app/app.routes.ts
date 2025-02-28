@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { AdminSignupComponent } from './admin-sign-up/admin-sign-up.component';
 import { ModeratorSignupComponent } from './moderator-sign-up/moderator-sign-up.component';
 
+
 import { AdminGuard } from './guards/admin-guard.guard';
 import { ModeratorGuard } from './guards/moderator-guard.guard';
 
@@ -15,6 +16,7 @@ export const routes: Routes = [
       { path: 'admin/signup', component: AdminSignupComponent, canActivate: [AdminGuard] },
       { path: 'moderator/signup', component: ModeratorSignupComponent, canActivate: [ModeratorGuard] },
       { path: 'haircare', loadComponent: () => import('./pages/haircare/haircare.component').then(m => m.HaircareComponent) },
+      { path: 'appointment', loadComponent: () => import('./appointment/appointment.component').then(m => m.AppointmentComponent) },
       { path: 'skincare', loadComponent: () => import('./pages/skincare/skincare.component').then(m => m.SkincareComponent) },
       { path: 'bodycare', loadComponent: () => import('./pages/bodycare/bodycare.component').then(m => m.BodycareComponent) },
       { path: 'salon-locator', loadComponent: () => import('./pages/salon-locator/salon-locator.component').then(m => m.SalonLocatorComponent) },

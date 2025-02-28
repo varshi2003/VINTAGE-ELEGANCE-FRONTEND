@@ -1,0 +1,71 @@
+<form [formGroup]="appointmentForm" (ngSubmit)="submitAppointment()">
+  <label>State:</label>
+  <select formControlName="state" (change)="onStateChange($event)">
+    <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+  </select>
+
+  <label>City:</label>
+  <select formControlName="city" (change)="onCityChange($event)">
+    <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+  </select>
+
+  <label>Outlet:</label>
+  <select formControlName="outlet" (change)="onOutletChange($event)">
+    <option *ngFor="let outlet of outlets" [value]="outlet">{{ outlet }}</option>
+  </select>
+
+  <label>Gender:</label>
+  <select formControlName="gender" (change)="onGenderChange($event)">
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+  </select>
+
+  <h4>Select Services:</h4>
+  <ul *ngIf="services.length > 0; else noServices">
+    <li *ngFor="let service of services">
+      <input type="checkbox" (change)="toggleServiceSelection(service)" />
+      {{ service.name }} - ₹{{ service.cost }}
+    </li>
+  </ul>
+  <ng-template #noServices>
+    <p>No services available.</p>
+  </ng-template>
+
+  <h4>Select Stylists:</h4>
+  <ul *ngIf="stylists.length > 0; else noStylists">
+    <li *ngFor="let stylist of stylists">
+      <input type="checkbox" (change)="toggleStylistSelection(stylist)" />
+      {{ stylist }}
+    </li>
+  </ul>
+  <ng-template #noStylists>
+    <p>No stylists available.</p>
+  </ng-template>
+
+  <h4>Total Cost: ₹{{ totalCost }}</h4>
+
+  <label>Date:</label>
+  <input type="date" formControlName="date" />
+
+  <label>Time:</label>
+  <input type="time" formControlName="time" />
+
+  <label>Name:</label>
+  <input type="text" formControlName="name" />
+
+  <label>Email:</label>
+  <input type="email" formControlName="email" />
+
+  <label>Phone:</label>
+  <input type="text" formControlName="phone" />
+
+  <label>Message:</label>
+  <textarea formControlName="message"></textarea>
+
+  <button type="button" (click)="submitAppointment()">Proceed to Payment</button>
+
+<app-payment [appointmentData]="appointmentData"></app-payment>
+
+
+  <button type="submit">Book Appointment</button>
+</form>

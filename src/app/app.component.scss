@@ -2,3 +2,9 @@
 *{
     font-family: "Noto Sans", serif;
 }
+.nav-bar{
+    position: fixed; top: 0; left: 0;width: 100%;z-index: 500;
+}
+.main-page{
+    padding-top: 100px;
+}

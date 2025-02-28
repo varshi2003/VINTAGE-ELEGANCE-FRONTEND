@@ -1,5 +1,5 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav mode="side" opened class="sidenav">
+<mat-drawer-container class="sidenav-container">
+  <mat-drawer mode="side" opened class="sidenav">
     <div class="sidebar-header">
       <p class="greeting">Hello, Admin!</p>
     </div>
@@ -32,11 +32,10 @@
     <div class="sidebar-footer">
       <small>&copy; 2025 Vintage Elegance</small>
     </div>
-  </mat-sidenav>
+  </mat-drawer>
 
-  <mat-sidenav-content class="content">
     <div class="dashboard-content">
       <router-outlet></router-outlet>
     </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+
+</mat-drawer-container>

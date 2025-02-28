@@ -1,7 +1,9 @@
-<p>salon-management </p>
+
+
 <div class="salon-list-container">
   <h2>Salon Management</h2>
   <button class="create-btn" (click)="createSalon()">Create Salon</button>
+
   <table>
     <thead>
       <tr>
@@ -9,7 +11,7 @@
         <th>City</th>
         <th>Outlet</th>
         <th>Services</th>
-        <th>Stylists (M/F)</th>
+        <th>Stylists</th>
         <th>Moderator</th>
         <th>Actions</th>
       </tr>
@@ -20,25 +22,44 @@
         <td>{{ salon.city }}</td>
         <td>{{ salon.outletName }}</td>
         <td>
-          <ul>
-            <li *ngFor="let service of salon.services">{{ service.name }} - ${{ service.cost }}</li>
-          </ul>
+          <button class="view-btn" (click)="viewServices(salon.services)">View</button>
         </td>
         <td>
-          M: {{ salon.maleStylists.join(', ') }} <br>
-          F: {{ salon.femaleStylists.join(', ') }}
+          <button class="view-btn" (click)="viewStylists(salon.maleStylists, salon.femaleStylists)">View</button>
         </td>
         <td>{{ salon.moderator }}</td>
         <td>
-          <button (click)="editSalon(salon.id)">Edit</button>
-          <button (click)="deleteSalon(salon.id)">Delete</button>
+          <button class="edit-btn" (click)="editSalon(salon.id)">Edit</button>
+          <button class="delete-btn" (click)="deleteSalon(salon.id)">Delete</button>
         </td>
       </tr>
     </tbody>
   </table>
+
   <div class="pagination">
     <button (click)="prevPage()" [disabled]="page === 0">Previous</button>
     <span>Page {{ page + 1 }} of {{ totalPages }}</span>
     <button (click)="nextPage()" [disabled]="page >= totalPages - 1">Next</button>
+  </div>
+</div>
+
+<div *ngIf="showServiceDialog" class="dialog-overlay">
+  <div class="dialog-box">
+    <h3>Services</h3>
+    <ul>
+      <li *ngFor="let service of selectedServices">
+        {{ service.name }} - ${{ service.cost }} ({{ service.gender }})
+      </li>
+    </ul>
+    <button class="close-btn" (click)="closeDialog()">Close</button>
+  </div>
+</div>
+
+<div *ngIf="showStylistDialog" class="dialog-overlay">
+  <div class="dialog-box">
+    <h3>Stylists</h3>
+    <p><strong>Male:</strong> {{ selectedMaleStylists.join(', ') }}</p>
+    <p><strong>Female:</strong> {{ selectedFemaleStylists.join(', ') }}</p>
+    <button class="close-btn" (click)="closeDialog()">Close</button>
   </div>
 </div>

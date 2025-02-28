@@ -2,15 +2,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap");
 $primary-color: #000;
 $accent-color: #ecd540;
-$background-color: #fff;
+$background-color: white;
 $highlight-color: #800000;
+
+
 .side-heading {
   font-family: "Noto Sans", serif;
-  
 }
 .sidenav-container {
   height: 100vh;
   background-color: $background-color;
+  color: #000;
 }
 
 .sidenav {
@@ -86,7 +88,7 @@ $highlight-color: #800000;
   background-color: $background-color;
   .dashboard-content {
     padding: 16px;
-    background: #f8f8f8;
+   
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }

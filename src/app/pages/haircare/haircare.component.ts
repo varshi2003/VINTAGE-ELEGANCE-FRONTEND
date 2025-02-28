@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-haircare',
@@ -7,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrl: './haircare.component.scss'
 })
 export class HaircareComponent {
+  constructor(private router: Router) {}
+  
+  navigateToAppointment() {
+    this.router.navigate(['/appointment']);
+  }
 
 }

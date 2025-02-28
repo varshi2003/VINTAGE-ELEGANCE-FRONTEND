@@ -1,69 +1,175 @@
+@use "sass:color";
+
+$primary-color: #f5f5dc;
+$background-color: #fef9e7;
+$font-color: #85754e;
+$button-hover: darken($primary-color, 10%);
+$gold: #85754e;
+$black: black;
+$red: #fa8072;
+$white: white;
+
+
 .salon-list-container {
   padding: 20px;
-  background-color: black;
-  color: gold;
+  background-color: white;
+  color: $font-color;
+  font-family: "Noto Sans", serif;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin: auto;
 }
 
 h2 {
   text-align: center;
-  color: white;
+  color: $gold;
 }
 
 .create-btn {
-  background-color: gold;
-  color: black;
+  background-color: $gold;
+  color: white;
   padding: 10px 15px;
   border: none;
   cursor: pointer;
   float: right;
-  margin-bottom: 10px;
+  font-weight: bold;
+  border-radius: 5px;
 }
 
 .create-btn:hover {
-  background-color: red;
-  color: white;
+  background-color: $button-hover;
+  color: $white;
 }
 
-.table {
+table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px;
 }
 
 thead th {
-  background-color: red;
-  color: white;
-  padding: 10px;
+  background-color: #f5f5dc;
+  color: $gold;
+  padding: 12px;
+  text-align: left;
 }
 
 tbody td {
-  padding: 10px;
-  border-bottom: 1px solid gold;
+  padding: 12px;
+  border-bottom: 1px solid $gold;
 }
 
 button {
   margin: 5px;
-  padding: 5px 10px;
+  padding: 8px 12px;
   border: none;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: 0.3s ease;
   cursor: pointer;
 }
 
-button:hover {
-  opacity: 0.8;
+.view-btn {
+  background-color: #f5f5dc;
+  color: $gold;
+}
+
+.view-btn:hover {
+  background-color: $button-hover;
+}
+
+.edit-btn {
+  background-color: #f5f5dc;
+  color: $gold;
+}
+
+.edit-btn:hover {
+  background-color: $button-hover;
+}
+
+.delete-btn {
+  background-color: $red;
+  color: black;
+}
+
+.delete-btn:hover {
+  background-color: #ff6347 ;
 }
 
 .pagination {
-  text-align: center;
-  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
 }
 
 .pagination button {
-  background-color: gold;
-  color: black;
-  padding: 5px 10px;
-  border: none;
-  cursor: pointer;
+  background-color: lighten($gold, 10%);
+
+  color: white;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.pagination button:disabled {
+  background-color: #f5f5dc;
+  cursor: not-allowed;
 }
 
 .pagination span {
-  margin: 0 10px;
+  margin: 0 15px;
+  font-size: 1.1rem;
+}
+
+/* Dialog Styles */
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dialog-box {
+  background: $white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.dialog-box h3 {
+  color: $font-color;
+  margin-bottom: 15px;
+}
+
+.dialog-box ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 15px;
+}
+
+.dialog-box ul li {
+  color: $black;
+  padding: 8px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.close-btn {
+  background-color: $red;
+  color: $white;
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+
+.close-btn:hover {
+  background-color: darkred;
 }
