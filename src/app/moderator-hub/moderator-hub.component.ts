@@ -63,7 +63,7 @@ export class ModeratorHubComponent implements OnInit {
     if (this.moderatorForm.valid) {
       const selectedOutlet = this.moderatorForm.value.outlet;
       localStorage.setItem('selectedOutlet', selectedOutlet);
-      this.router.navigate(['/moderator']);
+      this.router.navigate(['/moderator/moderator-statistics']);
     } 
   }
 }

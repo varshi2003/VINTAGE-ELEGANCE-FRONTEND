@@ -12,9 +12,11 @@ import { routes } from './app.routes';
 import { PaymentComponent } from './payment/payment.component';
 
 
+
 @NgModule({
   declarations: [AppComponent,PaymentComponent],
   imports: [
+
     BrowserModule,
     NavbarComponent,
     NgbModule,

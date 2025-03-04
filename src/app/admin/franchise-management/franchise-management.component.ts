@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminRequestService } from '../../services/admin-request.service';
 import { CommonModule, NgFor } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-franchise-management',
@@ -11,43 +12,65 @@ import { CommonModule, NgFor } from '@angular/common';
 })
 export class FranchiseManagementComponent implements OnInit {
   requests: any[] = [];
-  
+  paginatedRequests: any[] = [];
+  currentPage: number = 1;
+  itemsPerPage: number = 3; 
 
   constructor(private adminRequestService: AdminRequestService) {}
 
   ngOnInit(): void {
     this.getRequests();
   }
+
   getRequests() {
     this.adminRequestService.getAllRequests().subscribe({
       next: (data) => {
         this.requests = data.map((req) => ({
           ...req,
-          _id: req._id || req.id || req.requestId, 
+          _id: req._id || req.id || req.requestId,
         }));
+        this.updatePagination();
       },
-      error: (error) => {
+      error: () => {
+        Swal.fire('Error', 'Failed to fetch requests.', 'error');
       },
     });
   }
 
   updateStatus(requestId: string | undefined, status: string, message: string) {
     if (!requestId) {
-      alert('Error: Unable to update request due to missing ID.');
+      Swal.fire('Error', 'Unable to update request due to missing ID.', 'error');
       return;
     }
 
-    this.adminRequestService
-      .updateRequestStatus(requestId, status, message)
-      .subscribe({
-        next: (response) => {
-          alert('Request updated successfully.');
-          this.getRequests();
-        },
-        error: (error) => {
-          alert('Failed to update request. Please try again.');
-        },
-      });
+    this.adminRequestService.updateRequestStatus(requestId, status, message).subscribe({
+      next: () => {
+        Swal.fire('Success', 'Request updated successfully.', 'success');
+        this.getRequests();
+      },
+      error: () => {
+        Swal.fire('Error', 'Failed to update request. Please try again.', 'error');
+      },
+    });
+  }
+
+  /** Pagination Methods **/
+  updatePagination() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    this.paginatedRequests = this.requests.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  nextPage() {
+    if (this.currentPage * this.itemsPerPage < this.requests.length) {
+      this.currentPage++;
+      this.updatePagination();
+    }
+  }
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.updatePagination();
+    }
   }
 }
-

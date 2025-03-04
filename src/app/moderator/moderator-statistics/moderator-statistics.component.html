@@ -1,22 +1,29 @@
+
+
 <div class="statistics-container">
   <h2>Moderator Dashboard</h2>
 
   <div class="filter-buttons">
-    <button [class.active]="filterType === 'day'" (click)="setFilter('day')">
-      Day
-    </button>
-    <button [class.active]="filterType === 'week'" (click)="setFilter('week')">
-      Week
-    </button>
-    <button
-      [class.active]="filterType === 'month'"
-      (click)="setFilter('month')"
-    >
-      Month
-    </button>
-    <button [class.active]="filterType === 'year'" (click)="setFilter('year')">
-      Year
-    </button>
+    <button [class.active]="filterType === 'day'" (click)="setFilter('day')">Day</button>
+    <button [class.active]="filterType === 'week'" (click)="setFilter('week')">Week</button>
+    <button [class.active]="filterType === 'month'" (click)="setFilter('month')">Month</button>
+    <button [class.active]="filterType === 'year'" (click)="setFilter('year')">Year</button>
+  </div>
+
+  <div class="date-selection">
+    <div>
+      <label for="year">Year:</label>
+    <select id="year" [(ngModel)]="selectedYear" (change)="fetchAppointments()">
+      <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+    </select>
+    </div>
+    
+    <div>
+    <label for="month">Month:</label>
+    <select id="month" [(ngModel)]="selectedMonth" (change)="fetchAppointments()">
+      <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+    </select>
+  </div>
   </div>
 
   <div class="stats-grid">
@@ -33,6 +40,8 @@
       <p>{{ uniqueCustomers }}</p>
     </div>
   </div>
+
+  <canvas #revenueChart></canvas>
 
   <div class="table-container">
     <h3>Stylist Performance</h3>

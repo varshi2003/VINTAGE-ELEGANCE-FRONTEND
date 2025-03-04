@@ -1,42 +1,9 @@
-<!-- 
-<p>franchise-management works!</p>
-
-<h2>Manage Requests</h2>
-<ul>
-  <li *ngFor="let request of requests">
-    <p><strong>Moderator ID:</strong> {{ request.moderatorId }}</p>
-    <p><strong>Location:</strong> {{ request.state }} - {{ request.city }} - {{ request.outlet }}</p>
-
-    <h3>Services</h3>
-    <ul>
-      <li *ngFor="let service of request.services">
-        <p><strong>Service Name:</strong> {{ service.serviceName }}</p>
-        <p><strong>Cost:</strong> {{ service.cost }}</p>
-        <p><strong>Gender:</strong> {{ service.gender }}</p>
-      </li>
-    </ul>
-
-    <h3>Stylists</h3>
-    <ul>
-      <li *ngFor="let stylist of request.stylists">
-        <p><strong>Stylist Name:</strong> {{ stylist.stylistName }}</p>
-        <p><strong>Gender:</strong> {{ stylist.gender }}</p>
-      </li>
-    </ul>
-
-    <input #message type="text" placeholder="Enter message">
-    <button (click)="updateStatus(request._id, 'Accepted', message.value)">Accept</button>
-    <button (click)="updateStatus(request._id, 'Rejected', message.value)">Reject</button>
-  </li>
-</ul>
-
- -->
- <div class="container">
+<div class="container">
   <h2 class="title">Manage Requests</h2>
+
   <table class="request-table">
     <thead>
       <tr>
-        <!-- <th>Moderator ID</th> -->
         <th>Location</th>
         <th>Services</th>
         <th>Stylists</th>
@@ -44,8 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let request of requests">
-        <!-- <td>{{ request.moderatorId }}</td> -->
+      <tr *ngFor="let request of paginatedRequests">
         <td>{{ request.state }} - {{ request.city }} - {{ request.outlet }}</td>
         <td>
           <table class="inner-table">
@@ -89,4 +55,11 @@
       </tr>
     </tbody>
   </table>
+
+  <!-- Pagination Controls -->
+  <div class="pagination-controls">
+    <button class="pagination-btn" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+    <span class="page-indicator">Page {{ currentPage }}</span>
+    <button class="pagination-btn" (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= requests.length">Next</button>
+  </div>
 </div>

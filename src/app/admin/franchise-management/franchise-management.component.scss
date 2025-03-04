@@ -1,75 +1,215 @@
+
+// .container {
+//   max-width: 90%;
+//   margin: 20px auto;
+//   padding: 20px;
+//   background: #fdf6e3;
+//   border-radius: 10px;
+//   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+// }
+
+// .title {
+//   text-align: center;
+//   color: #8B4513;
+//   font-size: 24px;
+//   font-weight: bold;
+// }
+
+// .request-table {
+//   width: 100%;
+//   border-collapse: collapse;
+//   background: #fff;
+//   border-radius: 8px;
+//   overflow: hidden;
+// }
+
+// .request-table th,
+// .request-table td {
+//   border: 1px solid #ddd;
+//   padding: 12px;
+//   text-align: center;
+// }
+
+// .request-table th {
+//   background: #8B4513;
+//   color: white;
+// }
+
+// .inner-table {
+//   width: 100%;
+//   border-collapse: collapse;
+// }
+
+// .inner-table th,
+// .inner-table td {
+//   border: 1px solid #ddd;
+//   padding: 8px;
+// }
+
+// .inner-table th {
+//   background: #DAA520;
+//   color: white;
+// }
+
+// input {
+//   padding: 5px;
+//   margin-bottom: 5px;
+//   border: 1px solid #ccc;
+//   border-radius: 4px;
+// }
+
+// .accept-btn,
+// .reject-btn {
+//   padding: 8px 12px;
+//   border: none;
+//   border-radius: 5px;
+//   color: white;
+//   font-weight: bold;
+//   cursor: pointer;
+//   margin-top: 5px;
+// }
+
+// .accept-btn {
+//   background: #4CAF50;
+// }
+
+// .reject-btn {
+//   background: #D9534F;
+// }
+
+// /* Pagination Styles */
+// .pagination-controls {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin-top: 20px;
+// }
+
+// .pagination-btn {
+//   background: #8B4513; /* Same theme as table headers */
+//   color: white;
+//   border: none;
+//   padding: 10px 15px;
+//   margin: 0 10px;
+//   cursor: pointer;
+//   font-weight: bold;
+//   border-radius: 5px;
+// }
+
+// .pagination-btn:disabled {
+//   background: #ccc;
+//   cursor: not-allowed;
+// }
+
+// .page-indicator {
+//   font-size: 18px;
+//   font-weight: bold;
+//   color: #8B4513;
+// }
 .container {
-    max-width: 90%;
-    margin: 20px auto;
-    padding: 20px;
-    background: #fdf6e3;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .title {
-    text-align: center;
-    color: #8B4513;
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  .request-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
-  .request-table th, .request-table td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: center;
-  }
-  
-  .request-table th {
-    background: #8B4513;
-    color: white;
-  }
-  
-  .inner-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .inner-table th, .inner-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  
-  .inner-table th {
-    background: #DAA520;
-    color: white;
-  }
-  
-  input {
-    padding: 5px;
-    margin-bottom: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .accept-btn, .reject-btn {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 5px;
-  }
-  
-  .accept-btn {
-    background: #4CAF50;
-  }
-  
-  .reject-btn {
-    background: #D9534F;
-  }
-  
+  max-width: 90%;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fdf6e3;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  text-align: center;
+  color: #8B4513;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.request-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.request-table th,
+.request-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.request-table th {
+  background: #8B4513;
+  color: white;
+}
+
+.inner-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.inner-table th,
+.inner-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.inner-table th {
+  background: #DAA520;
+  color: white;
+}
+
+input {
+  padding: 5px;
+  margin-bottom: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.accept-btn,
+.reject-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.accept-btn {
+  background: #4CAF50;
+}
+
+.reject-btn {
+  background: #D9534F;
+}
+
+/* Pagination Styles */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination-btn {
+  background: #8B4513; /* Same theme as table headers */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.pagination-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.page-indicator {
+  font-size: 18px;
+  font-weight: bold;
+  color: #8B4513;
+}
