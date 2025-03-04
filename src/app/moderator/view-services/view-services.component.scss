@@ -1,28 +1,31 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap");
+
 body {
-  background: linear-gradient(135deg, #e3caa1, #c19767);
+  background: #fffaf0;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Poppins", sans-serif;
+  font-family: "Noto Sans", serif;
 }
 
 .view-services-container {
-  height: auto;
-  background: linear-gradient(135deg, #fdf4e3, #f8e0b5);
+  background: #fffaf0;
   padding: 30px;
   border-radius: 12px;
   margin: auto;
-  box-shadow: 0 10px 20px rgba(139, 69, 19, 0.3);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   text-align: center;
-  border: 2px solid #b87333;
-  font-family: "Poppins", sans-serif;
+  border: 2px solid #d4a373;
+  font-family: "Noto Sans", serif;
+  color: #6d4c41;
 
   h2 {
-    color: #5a3e2b;
-    font-size: 28px;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    color: #6d4c41;
+    font-size: 26px;
+    font-weight: bolder;
+    text-transform: uppercase;
   }
 
   .error {
@@ -39,15 +42,14 @@ body {
   .filter-section {
     margin-bottom: 20px;
     padding: 15px;
-    background: #fffaf0;
+    background: white;
     border-radius: 10px;
-    box-shadow: 0 5px 10px rgba(139, 69, 19, 0.2);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
 
     label {
-      background: rgba(255, 243, 224, 0.7);
-      font-size: 18px;
+      font-size: 16px;
       font-weight: bold;
-      color: #5a3e2b;
+      color: #6d4c41;
       margin-right: 10px;
     }
 
@@ -58,20 +60,18 @@ body {
       cursor: pointer;
       font-size: 16px;
       font-weight: bold;
-      background: linear-gradient(135deg, #d4a373, #b87333);
+      background: #d4a373;
       color: white;
-      border-radius: 25px;
+      border-radius: 6px;
       transition: 0.3s ease-in-out;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 
       &.active {
-        background: #8b4513;
-        transform: scale(1.1);
+        background: #6d4c41;
       }
 
       &:hover {
-        background: #a0522d;
-        transform: scale(1.05);
+        background: #8b5e3c;
       }
     }
   }
@@ -80,16 +80,16 @@ body {
   .stylists-section {
     margin-top: 20px;
     padding: 20px;
-    background: #fffaf0;
+    background: white;
     border-radius: 10px;
-    box-shadow: 0 5px 10px rgba(139, 69, 19, 0.15);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
     text-align: left;
 
     h3 {
-      color: #5a3e2b;
-      font-size: 22px;
+      color: #6d4c41;
+      font-size: 20px;
       font-weight: bold;
-      border-bottom: 2px solid #b87333;
+      border-bottom: 2px solid #d4a373;
       padding-bottom: 5px;
       margin-bottom: 15px;
     }
@@ -97,7 +97,7 @@ body {
     .loading {
       font-size: 16px;
       font-weight: bold;
-      color: #a67c52;
+      color: #8b5e3c;
       animation: pulse 1.5s infinite alternate;
     }
 
@@ -115,26 +115,26 @@ body {
       gap: 12px;
 
       li {
-        background: white;
+        background: #fffaf0;
         padding: 12px;
         border-radius: 8px;
-        box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
+        box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.15);
         display: flex;
         justify-content: space-between;
         font-size: 18px;
         font-weight: bold;
-        color: #5a3e2b;
+        color: #6d4c41;
         transition: transform 0.3s ease-in-out;
 
         &:hover {
-          background: #f8e0b5;
+          background: #f0dbc1;
           transform: translateY(-3px);
-          box-shadow: 0 8px 12px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.25);
         }
 
         .price {
           font-weight: bold;
-          color: #b87333;
+          color: #d4a373;
         }
       }
     }
