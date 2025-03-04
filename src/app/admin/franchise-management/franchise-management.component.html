@@ -1,1 +1,92 @@
+<!-- 
 <p>franchise-management works!</p>
+
+<h2>Manage Requests</h2>
+<ul>
+  <li *ngFor="let request of requests">
+    <p><strong>Moderator ID:</strong> {{ request.moderatorId }}</p>
+    <p><strong>Location:</strong> {{ request.state }} - {{ request.city }} - {{ request.outlet }}</p>
+
+    <h3>Services</h3>
+    <ul>
+      <li *ngFor="let service of request.services">
+        <p><strong>Service Name:</strong> {{ service.serviceName }}</p>
+        <p><strong>Cost:</strong> {{ service.cost }}</p>
+        <p><strong>Gender:</strong> {{ service.gender }}</p>
+      </li>
+    </ul>
+
+    <h3>Stylists</h3>
+    <ul>
+      <li *ngFor="let stylist of request.stylists">
+        <p><strong>Stylist Name:</strong> {{ stylist.stylistName }}</p>
+        <p><strong>Gender:</strong> {{ stylist.gender }}</p>
+      </li>
+    </ul>
+
+    <input #message type="text" placeholder="Enter message">
+    <button (click)="updateStatus(request._id, 'Accepted', message.value)">Accept</button>
+    <button (click)="updateStatus(request._id, 'Rejected', message.value)">Reject</button>
+  </li>
+</ul>
+
+ -->
+ <div class="container">
+  <h2 class="title">Manage Requests</h2>
+  <table class="request-table">
+    <thead>
+      <tr>
+        <!-- <th>Moderator ID</th> -->
+        <th>Location</th>
+        <th>Services</th>
+        <th>Stylists</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let request of requests">
+        <!-- <td>{{ request.moderatorId }}</td> -->
+        <td>{{ request.state }} - {{ request.city }} - {{ request.outlet }}</td>
+        <td>
+          <table class="inner-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Cost</th>
+                <th>Gender</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let service of request.services">
+                <td>{{ service.serviceName }}</td>
+                <td>{{ service.cost }}</td>
+                <td>{{ service.gender }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+        <td>
+          <table class="inner-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Gender</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let stylist of request.stylists">
+                <td>{{ stylist.stylistName }}</td>
+                <td>{{ stylist.gender }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+        <td>
+          <input #message type="text" placeholder="Enter message">
+          <button class="accept-btn" (click)="updateStatus(request._id, 'Accepted', message.value)">Accept</button>
+          <button class="reject-btn" (click)="updateStatus(request._id, 'Rejected', message.value)">Reject</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -109,7 +109,7 @@
  
 }
 
-/* Set fixed widths for image and text */
+
 .franchise-image {
   flex: 0 0 30%;
   text-align: left;
@@ -142,7 +142,7 @@
   margin-bottom: 10px;
 }
 
-/* Responsive Styling */
+
 @media (max-width: 768px) {
   .franchise-container {
     flex-direction: column;

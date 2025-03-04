@@ -1,0 +1,56 @@
+<div class="statistics-container">
+  <h2>Moderator Dashboard</h2>
+
+  <div class="filter-buttons">
+    <button [class.active]="filterType === 'day'" (click)="setFilter('day')">
+      Day
+    </button>
+    <button [class.active]="filterType === 'week'" (click)="setFilter('week')">
+      Week
+    </button>
+    <button
+      [class.active]="filterType === 'month'"
+      (click)="setFilter('month')"
+    >
+      Month
+    </button>
+    <button [class.active]="filterType === 'year'" (click)="setFilter('year')">
+      Year
+    </button>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <h3>Total Revenue</h3>
+      <p>₹{{ totalRevenue.toLocaleString() }}</p>
+    </div>
+    <div class="stat-card">
+      <h3>Total Appointments</h3>
+      <p>{{ totalAppointments }}</p>
+    </div>
+    <div class="stat-card">
+      <h3>Unique Customers</h3>
+      <p>{{ uniqueCustomers }}</p>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <h3>Stylist Performance</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Stylist Name</th>
+          <th>Services Done</th>
+          <th>Bonus Rewards</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let stylist of stylistStats">
+          <td>{{ stylist.name }}</td>
+          <td>{{ stylist.serviceCount }}</td>
+          <td>₹{{ stylist.bonus * 100 }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

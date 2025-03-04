@@ -5,9 +5,8 @@ import { Observable } from 'rxjs';
 interface Service {
   name: string;
   cost: number;
-  gender:string;
+  gender: string;
 }
-
 
 interface Salon {
   id?: string;
@@ -21,7 +20,7 @@ interface Salon {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SalonService {
   private apiUrl = 'http://localhost:8080/salons';
@@ -29,7 +28,9 @@ export class SalonService {
   constructor(private http: HttpClient) {}
 
   getSalons(page: number, size: number, sortBy: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}?page=${page}&size=${size}&sortBy=${sortBy}`);
+    return this.http.get<any>(
+      `${this.apiUrl}?page=${page}&size=${size}&sortBy=${sortBy}`
+    );
   }
 
   getSalonById(id: string): Observable<Salon> {
@@ -40,8 +41,8 @@ export class SalonService {
     return this.http.post<Salon>(this.apiUrl, salon);
   }
 
-  updateSalon(id: string, salon: Salon): Observable<Salon> {
-    return this.http.put<Salon>(`${this.apiUrl}/${id}`, salon);
+  updateSalon(salon: any): Observable<any> {
+    return this.http.put(`http://localhost:8080/salons/${salon.id}`, salon);
   }
 
   deleteSalon(id: string): Observable<string> {

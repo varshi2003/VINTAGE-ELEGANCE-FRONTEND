@@ -6,12 +6,13 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';
 import { AdminGuard } from './app/guards/admin-guard.guard';
 import { ModeratorGuard } from './app/guards/moderator-guard.guard';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideHttpClient(),
     provideRouter(routes),
     AdminGuard,
-    ModeratorGuard
+    ModeratorGuard, provideCharts(withDefaultRegisterables()), provideCharts(withDefaultRegisterables())
   ]
 }).catch(err => console.error(err));

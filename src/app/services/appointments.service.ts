@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { Appointment } from '../../models/appointments.model';
 
 @Injectable({
@@ -32,14 +32,23 @@ export class AppointmentService {
   getStylists(outlet: string, gender: string) {
     return this.http.get<string[]>(`${this.baseUrl}/stylists/${outlet}`);
   }
+  sendEmailConfirmation(appointmentData: any): Observable<any> {
+    return this.http.post('http://localhost:8080/api/payments/confirm-payment', appointmentData);
+  }
+  
+  
   bookAppointment(appointmentData: any): Observable<any> {
-    console.log('Sending appointment data to backend:', appointmentData);  
     return this.http.post(`${this.apiUrl}/book`, appointmentData);
   }
 
   getAllAppointments(): Observable<Appointment[]> {
-    return this.http.get<Appointment[]>(`${this.apiUrl}/all`);
+    return this.http.get<Appointment[]>(`${this.apiUrl}/all`).pipe(
+      catchError((error: any) => {
+        return throwError(() => new Error('Failed to load appointments.'));
+      })
+    );
   }
+  
 
   getAppointmentById(id: string): Observable<Appointment> {
     return this.http.get<Appointment>(`${this.baseUrl}/${id}`);
@@ -51,6 +60,14 @@ export class AppointmentService {
 
   updatePaymentStatus(paymentId: string, status: string): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/${paymentId}/update-status`, { status });
+  }
+
+  getAppointmentsByOutlet(outlet: string): Observable<Appointment[]> {
+    return this.http.get<Appointment[]>(`${this.apiUrl}/outlet/${outlet}`).pipe(
+      catchError((error: any) => {
+        return throwError(() => new Error('Failed to load appointments.'));
+      })
+    );
   }
   
 }

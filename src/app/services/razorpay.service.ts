@@ -13,8 +13,6 @@ export class RazorpayService {
 
   createOrder(amount: number): Observable<any> {
     const payload = { amount: amount * 100, currency: 'INR' }; 
-    console.log('Sending payment payload:', payload); 
-
     return this.http.post(`${this.paymentApiUrl}/create-order`, payload);
   }
 

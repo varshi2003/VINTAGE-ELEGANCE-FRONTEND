@@ -1,1 +1,41 @@
-<p>statistics works!</p>
+<div class="statistics-container">
+  <h2>Salon Statistics</h2>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <h3>Total Salons</h3>
+      <p>{{ totalSalons }}</p>
+    </div>
+    <div class="stat-card">
+      <h3>Male Stylists</h3>
+      <p>{{ maleStylistsCount }}</p>
+    </div>
+    <div class="stat-card">
+      <h3>Female Stylists</h3>
+      <p>{{ femaleStylistsCount }}</p>
+    </div>
+    <div class="stat-card">
+      <h3>Total Revenue</h3>
+      <p>₹{{ totalRevenue }}</p>
+    </div>
+    <div class="stat-card highlight">
+      <h3>Top Revenue Outlet</h3>
+      <p>{{ maxRevenueOutlet }}</p>
+    </div>
+    <div class="stat-card">
+      <h3>Total Appointments</h3>
+      <p>{{ totalServicesDone }}</p>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <canvas id="stylistsChart"></canvas>
+  </div>
+
+  <div class="chart-container">
+    <canvas id="revenueChart"></canvas>
+  </div>
+
+  <div class="chart-container">
+    <canvas id="servicesChart"></canvas>
+  </div>
+</div>

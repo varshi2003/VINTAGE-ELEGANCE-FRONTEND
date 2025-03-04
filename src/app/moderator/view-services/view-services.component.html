@@ -1,0 +1,49 @@
+<div class="view-services-container">
+  <h2>Services & Stylists</h2>
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <div class="filter-section">
+    <label>Select Gender:</label>
+    <button
+      (click)="onGenderChange('Male')"
+      [class.active]="selectedGender === 'Male'"
+    >
+      Male
+    </button>
+    <button
+      (click)="onGenderChange('Female')"
+      [class.active]="selectedGender === 'Female'"
+    >
+      Female
+    </button>
+  </div>
+
+  <div class="services-section">
+    <h3>Services for {{ selectedGender }}</h3>
+    <div *ngIf="loadingServices" class="loading">Loading services...</div>
+    <ul *ngIf="!loadingServices && services.length > 0">
+      <li *ngFor="let service of services">
+        <span>{{ service.name }}</span>
+        <span class="price">₹{{ service.cost }}</span>
+      </li>
+    </ul>
+    <div *ngIf="!loadingServices && services.length === 0" class="no-data">
+      No services available.
+    </div>
+  </div>
+  <div class="stylists-section">
+    <h3>Stylists for {{ selectedGender }}</h3>
+
+    <div *ngIf="loadingStylists" class="loading">Loading stylists...</div>
+
+    <ul *ngIf="!loadingStylists && stylists.length > 0">
+      <li *ngFor="let stylist of stylists">
+        <span>{{ stylist }}</span>
+      </li>
+    </ul>
+
+    <div *ngIf="!loadingStylists && stylists.length === 0" class="no-data">
+      No stylists available.
+    </div>
+  </div>
+</div>

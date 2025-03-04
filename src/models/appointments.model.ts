@@ -1,11 +1,17 @@
 export interface Appointment {
+  paymentAmount: number;
   id?: string;
   state: string;
   city: string;
   outlet: string;
   gender: string;
-  services: { name: string; cost: number }[];
-  stylists: { name: string }[];
+
+services: {
+  stylists: [];  
+  name: string;
+  cost: number;
+}[];
+  stylists: [];
   date: string;
   time: string;
   name: string;

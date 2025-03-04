@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
@@ -10,7 +9,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
   username = '';
@@ -19,29 +18,30 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
   togglePassword(): void {
-    const passwordField = document.getElementById("password") as HTMLInputElement;
+    const passwordField = document.getElementById(
+      'password'
+    ) as HTMLInputElement;
     if (passwordField) {
-      passwordField.type = passwordField.type === "password" ? "text" : "password";
+      passwordField.type =
+        passwordField.type === 'password' ? 'text' : 'password';
     }
   }
-  
 
   onSubmit(): void {
     this.error = '';
     this.authService.login(this.username, this.password).subscribe({
       next: () => {
-      
         if (this.authService.hasRole('ROLE_ADMIN')) {
           this.router.navigate(['/admin/statistics']);
         } else if (this.authService.hasRole('ROLE_MODERATOR')) {
-          this.router.navigate(['/moderator/signup']);
+          this.router.navigate(['/moderator-hub']);
         } else {
           this.router.navigate(['/']);
         }
       },
-      error: err => {
+      error: (err) => {
         this.error = err.error?.message || 'Login failed';
-      }
+      },
     });
   }
 }

@@ -20,7 +20,6 @@ export class NavbarComponent {
 
   constructor(public authService: AuthService, private router: Router) {
     this.currentUser$ = this.authService.currentUser$;
-    this.currentUser$.subscribe(user => console.log('Current user in navbar:', user));
   }
 
   logout(): void {

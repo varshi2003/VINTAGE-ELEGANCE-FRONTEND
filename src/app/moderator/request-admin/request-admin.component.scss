@@ -1,0 +1,211 @@
+@use "sass:color";
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap");
+
+$accent-color: #f5f5dc;
+$background-color: #fef9e7;
+$font-color: #85754e;
+$button-color: #85754e;
+$button-hover: darken($button-color, 10%);
+$border-color: darken($accent-color, 15%);
+$input-bg: white;
+$black: black;
+$red: #fa8072;
+$white: white;
+
+:host {
+  display: block;
+  padding: 20px;
+  background-color: $background-color;
+  font-family: "Noto Sans", sans-serif;
+  color: $font-color;
+}
+
+.request-admin-container {
+  max-width: 800px;
+  margin: auto;
+  background: $white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid $border-color;
+}
+
+h2,
+h3 {
+  text-align: center;
+  color: $font-color;
+  font-size: 1.8rem;
+}
+
+.request-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-weight: bold;
+  color: $font-color;
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 5px;
+}
+
+select,
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid $border-color;
+  border-radius: 6px;
+  background: $input-bg;
+  color: $black;
+  font-size: 1rem;
+}
+
+select::placeholder,
+input::placeholder {
+  color: lighten($font-color, 20%);
+}
+.submit-btn {
+  background-color: $button-color;
+  color: $white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: bold;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+.add-btn {
+  width: 70%;
+  margin-left: 100px;
+  background-color: $button-color;
+  color: $white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: bold;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.add-btn:hover,
+.submit-btn:hover {
+  background-color: $button-hover;
+}
+
+.service-box,
+.stylist-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: lighten($accent-color, 5%);
+  padding: 12px;
+  border-radius: 6px;
+  align-items: center;
+  border: 1px solid $border-color;
+}
+
+.request-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  background: lighten($accent-color, 10%);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.request-table th,
+.request-table td {
+  padding: 12px;
+  border: 1px solid $border-color;
+  text-align: left;
+  color: $black;
+  font-size: 1rem;
+}
+
+.request-table th {
+  background: darken($accent-color, 10%);
+  color: $font-color;
+  font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+  background: lighten($accent-color, 20%);
+}
+
+.no-requests {
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 15px;
+  color: $font-color;
+  font-style: italic;
+}
+.request-admin-container {
+  max-width: 800px;
+  margin: auto;
+  background: $white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid $border-color;
+  display: flex;
+  flex-direction: column; 
+  gap: 30px; 
+}
+
+h2,
+h3 {
+  text-align: center;
+  color: $font-color;
+  font-size: 1.8rem;
+}
+
+.form-container,
+.requests-container {
+  width: 100%; 
+}
+
+.request-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.request-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  background: lighten($accent-color, 10%);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.request-table th,
+.request-table td {
+  padding: 12px;
+  border: 1px solid $border-color;
+  text-align: left;
+  color: $black;
+  font-size: 1rem;
+}
+
+.request-table th {
+  background: darken($accent-color, 10%);
+  color: $font-color;
+  font-weight: bold;
+}
+
+.no-requests {
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 15px;
+  color: $font-color;
+  font-style: italic;
+}

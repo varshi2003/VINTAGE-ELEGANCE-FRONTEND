@@ -30,7 +30,6 @@ export class PaymentComponent implements OnInit {
     const amountInPaise = this.appointmentData.totalCost * 100; 
     this.razorpayService.createOrder(amountInPaise).subscribe((response: any) => {
       if (!response || !response.id) {
-        console.error('Invalid order response:', response);
         alert('Failed to create order. Please try again.');
         return;
       }
@@ -43,7 +42,6 @@ export class PaymentComponent implements OnInit {
         description: 'Salon Appointment Payment',
         order_id: response.id,
         handler: (paymentResponse: any) => {
-          console.log('Payment Success:', paymentResponse);
           alert('Payment successful!');
 
           this.appointmentData.paymentStatus = 'Successful';
@@ -64,13 +62,11 @@ export class PaymentComponent implements OnInit {
 
       const razorpay = new Razorpay(options);
       razorpay.on('payment.failed', (response: any) => {
-        console.error('Payment failed:', response.error);
         alert('Payment failed. Please try again.');
       });
 
       razorpay.open();
     }, (error) => {
-      console.error('Order creation error:', error);
       alert('Error creating order. Please check the console.');
     });
   }
@@ -78,11 +74,9 @@ export class PaymentComponent implements OnInit {
   private bookAppointment(appointmentData: any) {
     this.appointmentService.bookAppointment(appointmentData).subscribe(
       (res) => {
-        console.log('Appointment booked successfully:', res);
         alert('Appointment successfully booked!');
       },
       (err) => {
-        console.error('Error booking appointment:', err);
         alert('Error booking appointment. Check console.');
       }
     );

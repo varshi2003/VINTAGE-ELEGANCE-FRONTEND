@@ -1,5 +1,4 @@
 
-
 <div class="salon-list-container">
   <h2>Salon Management</h2>
   <button class="create-btn" (click)="createSalon()">Create Salon</button>
@@ -29,7 +28,7 @@
         </td>
         <td>{{ salon.moderator }}</td>
         <td>
-          <button class="edit-btn" (click)="editSalon(salon.id)">Edit</button>
+          <button class="edit-btn" (click)="openEditDialog(salon)">Edit</button>
           <button class="delete-btn" (click)="deleteSalon(salon.id)">Delete</button>
         </td>
       </tr>
@@ -63,3 +62,60 @@
     <button class="close-btn" (click)="closeDialog()">Close</button>
   </div>
 </div>
+
+<div *ngIf="showEditDialog" class="dialog-overlay">
+  <div class="dialog-box">
+    <h3>Edit Salon</h3>
+    <form (ngSubmit)="saveSalon()">
+      <label>State:</label>
+      <input type="text" [(ngModel)]="editableSalon.state" name="state" required />
+
+      <label>City:</label>
+      <input type="text" [(ngModel)]="editableSalon.city" name="city" required />
+
+      <label>Outlet Name:</label>
+      <input type="text" [(ngModel)]="editableSalon.outletName" name="outletName" required />
+
+      <label>Moderator:</label>
+      <input type="text" [(ngModel)]="editableSalon.moderator" name="moderator" required />
+
+      <label>Services:</label>
+      <ul>
+        <li *ngFor="let service of uniqueServices; let i = index">
+          <input type="text" [(ngModel)]="service.name" name="serviceName{{i}}" placeholder="Service Name" required />
+          <input type="number" [(ngModel)]="service.cost" name="serviceCost{{i}}" placeholder="Cost" required />
+          <select [(ngModel)]="service.gender" name="serviceGender{{i}}" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+          <button type="button" class="delete-btn" (click)="removeService(i)">Remove</button>
+        </li>
+      </ul>
+      <button type="button" class="add-btn" (click)="addNewService()">➕ Add Service</button>
+
+      <label>Male Stylists:</label>
+      <ul>
+        <li *ngFor="let stylist of editableSalon.maleStylists; let i = index">
+          <input type="text" [(ngModel)]="editableSalon.maleStylists[i]" name="maleStylist{{i}}" placeholder="Stylist Name" required />
+          <button type="button" class="delete-btn" (click)="removeMaleStylist(i)">Remove</button>
+        </li>
+      </ul>
+      <button type="button" class="add-btn" (click)="addNewMaleStylist()">➕ Add Male Stylist</button>
+
+      <label>Female Stylists:</label>
+      <ul>
+        <li *ngFor="let stylist of editableSalon.femaleStylists; let i = index">
+          <input type="text" [(ngModel)]="editableSalon.femaleStylists[i]" name="femaleStylist{{i}}" placeholder="Stylist Name" required />
+          <button type="button" class="delete-btn" (click)="removeFemaleStylist(i)">Remove</button>
+        </li>
+      </ul>
+      <button type="button" class="add-btn" (click)="addNewFemaleStylist()">➕ Add Female Stylist</button>
+
+      <div class="dialog-actions">
+        <button type="submit" class="save-btn">Save</button>
+        <button type="button" class="close-btn" (click)="closeEditDialog()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+

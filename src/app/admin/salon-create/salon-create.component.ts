@@ -44,7 +44,7 @@ export class SalonCreateComponent {
     const serviceGroup = this.fb.group({
       name: ['', Validators.required],
       cost: ['', [Validators.required, Validators.min(1)]],
-      gender: ['', Validators.required]  // Ensure gender is included
+      gender: ['', Validators.required]  
     });
   
     this.services.push(serviceGroup);
@@ -74,8 +74,6 @@ export class SalonCreateComponent {
   saveSalon(): void {
     if (this.salonForm.invalid) {
       console.warn("Form is invalid", this.salonForm.errors);
-      
-      
       Object.keys(this.salonForm.controls).forEach((key) => {
         const controlErrors = this.salonForm.get(key)?.errors;
         if (controlErrors) {
@@ -94,8 +92,6 @@ export class SalonCreateComponent {
       return; 
     }
 
-    console.log("Saving salon:", this.salonForm.value); 
-
     this.salonService.createSalon(this.salonForm.value).subscribe({
       next: () => {
         Swal.fire({
@@ -109,7 +105,6 @@ export class SalonCreateComponent {
         });
       },
       error: (err) => {
-        console.error("Error saving salon:", err);
         Swal.fire({
           title: 'Error!',
           text: 'Something went wrong while saving the salon. Please try again.',

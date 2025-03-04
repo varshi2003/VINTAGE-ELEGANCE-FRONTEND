@@ -5,6 +5,8 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { FranchiseManagementComponent } from './franchise-management/franchise-management.component';
 import { SalonManagementComponent } from './salon-management/salon-management.component';
 import { SalonCreateComponent } from './salon-create/salon-create.component';
+import { AdminSignupComponent } from '../admin-sign-up/admin-sign-up.component';
+
 
 const routes: Routes = [
   {
@@ -15,7 +17,8 @@ const routes: Routes = [
       { path: 'create-salon', component: SalonCreateComponent },
       { path: 'statistics', component: StatisticsComponent },
       { path: 'franchise', component: FranchiseManagementComponent },
-      { path: 'salon-management', component: SalonManagementComponent }
+      { path: 'salon-management', component: SalonManagementComponent },
+      { path: 'create-moderator', component: AdminSignupComponent }
     ]
   }
 ];

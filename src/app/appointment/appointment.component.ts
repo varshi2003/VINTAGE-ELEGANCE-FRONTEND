@@ -1,15 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { AppointmentService } from '../services/appointments.service';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { CommonModule, NgFor } from '@angular/common';
 import { RazorpayService } from '../services/razorpay.service';
 import { PaymentComponent } from '../payment/payment.component';
-declare var Razorpay: any; 
+
+
+import Swal from 'sweetalert2';
+declare var Razorpay: any;
 @Component({
   selector: 'app-appointment',
   templateUrl: './appointment.component.html',
   styleUrls: ['./appointment.component.scss'],
-  imports: [CommonModule, NgFor, ReactiveFormsModule,PaymentComponent]
+  imports: [CommonModule, NgFor, ReactiveFormsModule, PaymentComponent],
 })
 export class AppointmentComponent implements OnInit {
   appointmentForm!: FormGroup;
@@ -21,10 +29,14 @@ export class AppointmentComponent implements OnInit {
   selectedServices: any[] = [];
   selectedStylists: string[] = [];
   totalCost: number = 0;
-  appointmentData: any = {};  
-  paymentStatus?: "success";
+  appointmentData: any = {};
+  paymentStatus?: 'success';
 
-  constructor(private appointmentService: AppointmentService, private fb: FormBuilder, private razorpayService: RazorpayService) {}
+  constructor(
+    private appointmentService: AppointmentService,
+    private fb: FormBuilder,
+    private razorpayService: RazorpayService
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -42,7 +54,7 @@ export class AppointmentComponent implements OnInit {
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
-      message: ['']
+      message: [''],
     });
   }
 
@@ -104,9 +116,12 @@ export class AppointmentComponent implements OnInit {
       );
       this.appointmentService.getStylists(outlet, gender).subscribe(
         (response: any) => {
-          this.stylists = response && typeof response === 'object'
-            ? (gender === 'Male' ? response.maleStylists : response.femaleStylists)
-            : [];
+          this.stylists =
+            response && typeof response === 'object'
+              ? gender === 'Male'
+                ? response.maleStylists
+                : response.femaleStylists
+              : [];
         },
         () => {
           this.stylists = [];
@@ -116,7 +131,9 @@ export class AppointmentComponent implements OnInit {
   }
 
   toggleServiceSelection(service: any) {
-    const index = this.selectedServices.findIndex(s => s.name === service.name);
+    const index = this.selectedServices.findIndex(
+      (s) => s.name === service.name
+    );
     if (index > -1) {
       this.selectedServices.splice(index, 1);
     } else {
@@ -135,11 +152,18 @@ export class AppointmentComponent implements OnInit {
   }
 
   calculateTotalCost() {
-    this.totalCost = this.selectedServices.reduce((sum, service) => sum + service.cost, 0);
+    this.totalCost = this.selectedServices.reduce(
+      (sum, service) => sum + service.cost,
+      0
+    );
   }
 
   submitAppointment() {
-    
+    if (this.appointmentForm.invalid || this.selectedServices.length === 0 || this.selectedStylists.length === 0) {
+      Swal.fire('Validation Error', 'Please fill in all required fields and select at least one service and stylist.', 'warning');
+      return;
+    }
+  
     this.appointmentData = {
       state: this.appointmentForm.value.state,
       city: this.appointmentForm.value.city,
@@ -155,86 +179,88 @@ export class AppointmentComponent implements OnInit {
       message: this.appointmentForm.value.message,
       totalCost: this.totalCost,
     };
-
-    this.initiatePayment( this.appointmentData );
+  
+    this.initiatePayment(this.appointmentData);
   }
+  
 
   initiatePayment(appointmentData: any) {
-    this.razorpayService.createOrder(appointmentData.totalCost).subscribe((response: any) => {
-      console.log("Razorpay Order Response:", response); 
-  
-      if (!response || !response.id) {
-        console.error('Invalid order response:', response);
-        alert('Failed to create order. Please try again.');
-        return;
-      }
-  
-      const options = {
-        key: this.razorpayService.getRazorpayKey(),
-        amount: response.amount,
-        currency: 'INR',
-        name: 'Vintage Elegance',
-        description: 'Salon Appointment Payment',
-        order_id: response.id, 
-        handler: (paymentResponse: any) => {
-          console.log('Payment Success:', paymentResponse);
-  
-          alert('Payment successful!');
-
-          this.appointmentData = {
-            ...this.appointmentData,
-            paymentStatus: 'Successful',
-            razorpayOrderId: paymentResponse.razorpay_order_id,
-            razorpayPaymentId: paymentResponse.razorpay_payment_id,
-            razorpaySignature: paymentResponse.razorpay_signature
-          };
-  
-          this.postAppointment(appointmentData); 
-        },
-        prefill: {
-          name: appointmentData.name,
-          email: appointmentData.email,
-          contact: appointmentData.phone
-        },
-        theme: {
-          color: '#F37254'
+    this.razorpayService.createOrder(appointmentData.totalCost).subscribe(
+      (response: any) => {
+        if (!response || !response.id) {
+          Swal.fire(
+            'Error',
+            'Failed to create order. Please try again.',
+            'error'
+          );
+          return;
         }
-      };
-  
-      const razorpay = new Razorpay(options);
-  
-      razorpay.on('payment.failed', (response: any) => {
-        console.error('Payment failed:', response.error);
-        alert('Payment failed. Please try again.');
-      });
-  
-      razorpay.open();
-    }, (error) => {
-      console.error('Order creation error:', error);
-      alert('Error creating order. Please check the console.');
-    });
+
+        const options = {
+          key: this.razorpayService.getRazorpayKey(),
+          amount: response.amount,
+          currency: 'INR',
+          name: 'Vintage Elegance',
+          description: 'Salon Appointment Payment',
+          order_id: response.id,
+          handler: (paymentResponse: any) => {
+            Swal.fire('Success', 'Payment successful!', 'success');
+
+            this.appointmentData = {
+              ...this.appointmentData,
+              paymentStatus: 'Successful',
+              razorpayOrderId: paymentResponse.razorpay_order_id,
+              razorpayPaymentId: paymentResponse.razorpay_payment_id,
+              razorpaySignature: paymentResponse.razorpay_signature,
+            };
+
+            this.postAppointment(appointmentData);
+          },
+          prefill: {
+            name: appointmentData.name,
+            email: appointmentData.email,
+            contact: appointmentData.phone,
+          },
+          theme: {
+            color: '#F37254',
+          },
+        };
+
+        const razorpay = new Razorpay(options);
+
+        razorpay.on('payment.failed', (response: any) => {
+          Swal.fire('Error', 'Payment failed. Please try again.', 'error');
+        });
+
+        razorpay.open();
+      },
+      (error) => {
+        Swal.fire('Error', 'Error creating order.', 'error');
+      }
+    );
   }
-  
-   postAppointment(appointmentData: any) {
+
+  postAppointment(appointmentData: any) {
     if (!appointmentData || Object.keys(appointmentData).length === 0) {
-      alert('Appointment data is missing!');
-      console.error('Error: Appointment data is empty');
+      Swal.fire('Error', 'Appointment data is missing!', 'error');
       return;
     }
-  
+
     this.appointmentService.bookAppointment(appointmentData).subscribe({
       next: (response) => {
-        console.log('Appointment booked successfully:', response);
-        alert('Appointment confirmed!');
+        Swal.fire('Success', 'Appointment confirmed!', 'success');
+        this.sendEmailConfirmation(appointmentData);
       },
       error: (error) => {
-        console.error('Error booking appointment:', error);
-        alert('Error booking appointment. Please check the console.');
+        Swal.fire('Error', 'Error booking appointment', 'error');
       },
-      complete: () => {
-        console.log('Appointment request completed.');
-      }
+      complete: () => {},
     });
   }
-  
+  sendEmailConfirmation(appointmentData: any) {
+    this.appointmentService.sendEmailConfirmation(appointmentData).subscribe({
+      next: (response) => {},
+      error: (error) => {},
+    });
+  }
 }
