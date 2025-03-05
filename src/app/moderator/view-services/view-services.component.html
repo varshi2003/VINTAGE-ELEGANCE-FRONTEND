@@ -23,7 +23,7 @@
     <div *ngIf="loadingServices" class="loading">Loading services...</div>
     <ul *ngIf="!loadingServices && services.length > 0">
       <li *ngFor="let service of services">
-        <span>{{ service.name }}</span>
+        <span class="price">{{ service.name }}</span>
         <span class="price">₹{{ service.cost }}</span>
       </li>
     </ul>
@@ -38,7 +38,7 @@
 
     <ul *ngIf="!loadingStylists && stylists.length > 0">
       <li *ngFor="let stylist of stylists">
-        <span>{{ stylist }}</span>
+        <span class="price">{{ stylist }}</span>
       </li>
     </ul>
 

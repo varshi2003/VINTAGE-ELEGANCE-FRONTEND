@@ -1,8 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap");
 .haircare-container {
- 
-
   font-size: 30px;
   display: flex;
   align-items: center;
@@ -10,7 +8,6 @@
   background-color: black;
   color: white;
   padding: 50px;
- 
 }
 
 .text-content {
@@ -27,7 +24,7 @@
     padding: 10px 20px;
     font-size: 1.2rem;
     border: none;
-    background-color: #79443B;
+    background-color: #79443b;
     color: white;
     cursor: pointer;
     border-radius: 5px;
@@ -40,12 +37,11 @@
   }
 }
 .highlight {
-  background: linear-gradient(to right, #c49a6c, #79443B);
+  background: linear-gradient(to right, #c49a6c, #79443b);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;
 }
-
 
 .image-container {
   flex: 1;

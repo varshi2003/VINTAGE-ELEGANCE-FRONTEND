@@ -5,13 +5,12 @@ import { Router } from '@angular/router';
   selector: 'app-skincare',
   imports: [],
   templateUrl: './skincare.component.html',
-  styleUrl: './skincare.component.scss'
+  styleUrl: './skincare.component.scss',
 })
 export class SkincareComponent {
-   constructor(private router: Router) {}
-      
-      navigateToAppointment() {
-        this.router.navigate(['/appointment']);
-      }
+  constructor(private router: Router) {}
 
+  navigateToAppointment() {
+    this.router.navigate(['/appointment']);
+  }
 }

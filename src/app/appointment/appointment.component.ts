@@ -10,7 +10,6 @@ import { CommonModule, NgFor } from '@angular/common';
 import { RazorpayService } from '../services/razorpay.service';
 import { PaymentComponent } from '../payment/payment.component';
 
-
 import Swal from 'sweetalert2';
 declare var Razorpay: any;
 @Component({
@@ -159,11 +158,30 @@ export class AppointmentComponent implements OnInit {
   }
 
   submitAppointment() {
-    if (this.appointmentForm.invalid || this.selectedServices.length === 0 || this.selectedStylists.length === 0) {
-      Swal.fire('Validation Error', 'Please fill in all required fields and select at least one service and stylist.', 'warning');
+    if (
+      this.appointmentForm.invalid ||
+      this.selectedServices.length === 0 ||
+      this.selectedStylists.length === 0
+    ) {
+      Swal.fire(
+        'Validation Error',
+        'Please fill in all details and make sure the correct format is given.',
+        'warning'
+      );
       return;
     }
-  
+
+    const localDate = this.appointmentForm.value.date;
+    const localTime = this.appointmentForm.value.time;
+
+    const localDateTime = new Date(`${localDate}T${localTime}:00`);
+
+    const utcDateTime = new Date(
+      localDateTime.getTime() - localDateTime.getTimezoneOffset() * 60000
+    );
+
+    const formattedUTCDateTime = utcDateTime.toISOString();
+
     this.appointmentData = {
       state: this.appointmentForm.value.state,
       city: this.appointmentForm.value.city,
@@ -178,11 +196,10 @@ export class AppointmentComponent implements OnInit {
       phone: this.appointmentForm.value.phone,
       message: this.appointmentForm.value.message,
       totalCost: this.totalCost,
+      dateTime: formattedUTCDateTime,
     };
-  
     this.initiatePayment(this.appointmentData);
   }
-  
 
   initiatePayment(appointmentData: any) {
     this.razorpayService.createOrder(appointmentData.totalCost).subscribe(
@@ -250,6 +267,12 @@ export class AppointmentComponent implements OnInit {
       next: (response) => {
         Swal.fire('Success', 'Appointment confirmed!', 'success');
         this.sendEmailConfirmation(appointmentData);
+        this.appointmentForm.reset();
+        this.selectedServices = [];
+        this.selectedStylists = [];
+        this.totalCost = 0;
+        this.services = [];
+        this.stylists = [];
       },
       error: (error) => {
         Swal.fire('Error', 'Error booking appointment', 'error');

@@ -14,7 +14,14 @@ export class FranchiseManagementComponent implements OnInit {
   requests: any[] = [];
   paginatedRequests: any[] = [];
   currentPage: number = 1;
-  itemsPerPage: number = 3; 
+  itemsPerPage: number = 3;
+
+  showServiceDialog: boolean = false;
+  showStylistDialog: boolean = false;
+
+  selectedServices: any[] = [];
+  selectedMaleStylists: string[] = [];
+  selectedFemaleStylists: string[] = [];
 
   constructor(private adminRequestService: AdminRequestService) {}
 
@@ -39,25 +46,58 @@ export class FranchiseManagementComponent implements OnInit {
 
   updateStatus(requestId: string | undefined, status: string, message: string) {
     if (!requestId) {
-      Swal.fire('Error', 'Unable to update request due to missing ID.', 'error');
+      Swal.fire(
+        'Error',
+        'Unable to update request due to missing ID.',
+        'error'
+      );
       return;
     }
 
-    this.adminRequestService.updateRequestStatus(requestId, status, message).subscribe({
-      next: () => {
-        Swal.fire('Success', 'Request updated successfully.', 'success');
-        this.getRequests();
-      },
-      error: () => {
-        Swal.fire('Error', 'Failed to update request. Please try again.', 'error');
-      },
-    });
+    this.adminRequestService
+      .updateRequestStatus(requestId, status, message)
+      .subscribe({
+        next: () => {
+          Swal.fire('Success', 'Request updated successfully.', 'success');
+          this.getRequests();
+        },
+        error: () => {
+          Swal.fire(
+            'Error',
+            'Failed to update request. Please try again.',
+            'error'
+          );
+        },
+      });
+  }
+  viewServices(services: any[]): void {
+    this.selectedServices = services || [];
+    this.showServiceDialog = true;
   }
 
-  /** Pagination Methods **/
+  viewStylists(stylists: any[]): void {
+    this.selectedMaleStylists = stylists
+      .filter((stylist) => stylist.gender === 'Male')
+      .map((stylist) => stylist.stylistName);
+
+    this.selectedFemaleStylists = stylists
+      .filter((stylist) => stylist.gender === 'Female')
+      .map((stylist) => stylist.stylistName);
+
+    this.showStylistDialog = true;
+  }
+
+  closeDialog(): void {
+    this.showServiceDialog = false;
+    this.showStylistDialog = false;
+  }
+
   updatePagination() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    this.paginatedRequests = this.requests.slice(startIndex, startIndex + this.itemsPerPage);
+    this.paginatedRequests = this.requests.slice(
+      startIndex,
+      startIndex + this.itemsPerPage
+    );
   }
 
   nextPage() {

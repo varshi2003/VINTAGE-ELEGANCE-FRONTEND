@@ -14,52 +14,70 @@
       <tr *ngFor="let request of paginatedRequests">
         <td>{{ request.state }} - {{ request.city }} - {{ request.outlet }}</td>
         <td>
-          <table class="inner-table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Cost</th>
-                <th>Gender</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let service of request.services">
-                <td>{{ service.serviceName }}</td>
-                <td>{{ service.cost }}</td>
-                <td>{{ service.gender }}</td>
-              </tr>
-            </tbody>
-          </table>
+          <button class="view-btn" (click)="viewServices(request.services)">
+            View Services
+          </button>
         </td>
         <td>
-          <table class="inner-table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Gender</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let stylist of request.stylists">
-                <td>{{ stylist.stylistName }}</td>
-                <td>{{ stylist.gender }}</td>
-              </tr>
-            </tbody>
-          </table>
+          <button class="view-btn" (click)="viewStylists(request.stylists)">
+            View Stylists
+          </button>
         </td>
         <td>
-          <input #message type="text" placeholder="Enter message">
-          <button class="accept-btn" (click)="updateStatus(request._id, 'Accepted', message.value)">Accept</button>
-          <button class="reject-btn" (click)="updateStatus(request._id, 'Rejected', message.value)">Reject</button>
+          <input #message type="text" placeholder="Enter message" />
+          <div>
+            <button
+              class="accept-btn"
+              (click)="updateStatus(request._id, 'Accepted', message.value)"
+            >
+              Accept
+            </button>
+            <button
+              class="reject-btn"
+              (click)="updateStatus(request._id, 'Rejected', message.value)"
+            >
+              Reject
+            </button>
+          </div>
         </td>
       </tr>
     </tbody>
   </table>
+  <div *ngIf="showServiceDialog" class="dialog-overlay">
+    <div class="dialog-box">
+      <h3>Services</h3>
+      <ul>
+        <li *ngFor="let service of selectedServices">
+          {{ service.serviceName }} - ${{ service.cost }} ({{ service.gender }})
+        </li>
+      </ul>
+      <button class="close-btn" (click)="closeDialog()">Close</button>
+    </div>
+  </div>
+  <div *ngIf="showStylistDialog" class="dialog-overlay">
+    <div class="dialog-box">
+      <h3>Stylists</h3>
+      <p><strong>Male:</strong> {{ selectedMaleStylists.join(", ") }}</p>
+      <p><strong>Female:</strong> {{ selectedFemaleStylists.join(", ") }}</p>
+      <button class="close-btn" (click)="closeDialog()">Close</button>
+    </div>
+  </div>
 
-  <!-- Pagination Controls -->
   <div class="pagination-controls">
-    <button class="pagination-btn" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+    <button
+      class="pagination-btn"
+      (click)="prevPage()"
+      [disabled]="currentPage === 1"
+    >
+      Previous
+    </button>
     <span class="page-indicator">Page {{ currentPage }}</span>
-    <button class="pagination-btn" (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= requests.length">Next</button>
+    <button
+      class="pagination-btn"
+      (click)="nextPage()"
+      [disabled]="currentPage * itemsPerPage >= requests.length"
+    >
+      Next
+    </button>
   </div>
 </div>

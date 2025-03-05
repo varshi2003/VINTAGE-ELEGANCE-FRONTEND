@@ -9,7 +9,6 @@ $black: black;
 $red: #fa8072;
 $white: white;
 
-
 .salon-list-container {
   padding: 20px;
   background-color: white;
@@ -89,8 +88,7 @@ button {
 }
 
 .delete-btn:hover {
-  background-color: #e0737e ;
-
+  background-color: #e0737e;
 }
 
 .pagination {
@@ -119,9 +117,8 @@ button {
   font-size: 1.1rem;
 }
 
-
 .dialog-overlay {
-  margin-left:150px!important;
+  margin-left: 150px !important;
   padding-top: 150px;
   position: fixed;
   top: 0;
@@ -172,7 +169,6 @@ button {
   background-color: darkred;
 }
 
-
 .dialog-overlay {
   position: fixed;
   top: 0;
@@ -181,8 +177,8 @@ button {
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
-  align-items: center; 
-  justify-content: center; 
+  align-items: center;
+  justify-content: center;
   overflow-y: auto;
   z-index: 1000;
 }
@@ -192,13 +188,12 @@ button {
   padding: 20px;
   width: 50%;
   max-width: 600px;
-  max-height: 90vh; 
+  max-height: 90vh;
   overflow-y: auto;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   position: relative;
 }
-
 
 form {
   display: flex;
@@ -208,11 +203,12 @@ form {
 label {
   font-weight: bold;
   margin-top: 10px;
-  display:block;
+  display: block;
 }
 
 input,
-textarea,select {
+textarea,
+select {
   width: 100%;
   padding: 8px;
   margin-top: 5px;
@@ -258,8 +254,8 @@ li {
   border-radius: 4px;
 }
 .delete-btn-inside {
-  width:60%;
-   background: #F08080;
+  width: 60%;
+  background: #f08080;
   color: white;
   border: none;
   padding: 5px 10px;
@@ -269,7 +265,7 @@ li {
 }
 
 .add-btn {
-  background: #93C572;
+  background: #93c572;
   color: white;
   border: none;
   padding: 8px 12px;

@@ -54,7 +54,6 @@ export class ModeratorHubComponent implements OnInit {
     if (selectedCity) {
       this.appointmentService.getOutlets(selectedCity).subscribe({
         next: (data) => this.outlets = data,
-        error: (err) => console.error('Error fetching outlets:', err)
       });
     }
   }

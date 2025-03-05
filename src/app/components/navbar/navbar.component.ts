@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
@@ -11,9 +10,16 @@ import { CommonModule, NgIf } from '@angular/common';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [MatToolbarModule, MatMenuModule, MatButtonModule, RouterModule, CommonModule, NgIf],
+  imports: [
+    MatToolbarModule,
+    MatMenuModule,
+    MatButtonModule,
+    RouterModule,
+    CommonModule,
+    NgIf,
+  ],
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
   currentUser$: Observable<User | null>;

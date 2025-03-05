@@ -66,14 +66,6 @@ export class SalonManagementComponent implements OnInit {
     });
   }
 
-
-  // saveSalon(): void {
-  //   this.editableSalon.services = this.uniqueServices;
-  //   this.salonService.updateSalon(this.editableSalon).subscribe(() => {
-  //     this.loadSalons();
-  //     this.closeEditDialog();
-  //   });
-  // }
   saveSalon(): void {
     Swal.fire({
       title: 'Save Changes?',
@@ -94,7 +86,6 @@ export class SalonManagementComponent implements OnInit {
       }
     });
   }
-
 
   deleteSalon(id: string): void {
     Swal.fire({

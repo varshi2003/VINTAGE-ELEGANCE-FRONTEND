@@ -1,5 +1,7 @@
+
 <div class="appointments-container">
   <h2>Your Appointments</h2>
+
   <table>
     <thead>
       <tr>
@@ -15,7 +17,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let appointment of appointments">
+      <tr *ngFor="let appointment of paginatedAppointments">
         <td>{{ appointment.date }}</td>
         <td>{{ appointment.time }}</td>
         <td>{{ getServiceNames(appointment) }}</td>
@@ -28,4 +30,10 @@
       </tr>
     </tbody>
   </table>
+
+  <div class="pagination" *ngIf="totalPages > 1">
+    <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
+  </div>
 </div>

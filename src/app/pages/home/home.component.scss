@@ -60,7 +60,6 @@
   background-color: darkred;
 }
 
-
 .trending-container {
   display: flex;
   align-items: center;
@@ -106,9 +105,7 @@
   margin: auto;
   padding: 20px;
   background-color: #e2e2e2;
- 
 }
-
 
 .franchise-image {
   flex: 0 0 30%;
@@ -142,40 +139,36 @@
   margin-bottom: 10px;
 }
 
-
 @media (max-width: 768px) {
   .franchise-container {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .franchise-image,
   .franchise-text {
     flex: 1 0 auto;
     padding: 0;
   }
-  
+
   .franchise-text {
     text-align: center;
     margin-top: 20px;
   }
 }
 
-
-
-
 @media (max-width: 768px) {
   .trending-container {
-      flex-direction: column;
-      text-align: center;
+    flex-direction: column;
+    text-align: center;
   }
 
   .trending-text {
-      padding-right: 0;
-      margin-bottom: 20px;
+    padding-right: 0;
+    margin-bottom: 20px;
   }
 
   .trending-image {
-      text-align: center;
+    text-align: center;
   }
 }

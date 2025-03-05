@@ -15,7 +15,7 @@ $save-button-hover: darken($save-button-color, 10%);
   color: $font-color;
 }
 
-.form-container {
+.request-form {
   width: 900px;
   margin: auto;
   padding: 20px;
@@ -31,13 +31,8 @@ $save-button-hover: darken($save-button-color, 10%);
   color: $font-color;
 }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-}
-
 label {
+  display: block;
   margin-bottom: 5px;
   color: $font-color;
   font-weight: bold;
@@ -45,36 +40,27 @@ label {
 
 input,
 select {
+  width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: white;
   font-size: 1rem;
-  margin-left: 10px;
-}
-
-.section {
-  margin-top: 20px;
-}
-
-.section-title {
-  font-size: 1.1rem;
-  color: $font-color;
-  display: block;
   margin-bottom: 10px;
-  font-weight: bold;
 }
 
-.service-row,
-.stylist-row {
+.service-box,
+.stylist-box {
   display: flex;
   gap: 10px;
   align-items: center;
   margin-bottom: 10px;
 }
 
-.service-row input,
-.service-row select {
+.service-box input,
+.service-box select,
+.stylist-box input,
+.stylist-box select {
   flex: 1;
 }
 

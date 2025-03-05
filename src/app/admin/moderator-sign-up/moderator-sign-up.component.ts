@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -11,7 +10,7 @@ import Swal from 'sweetalert2';
   standalone: true,
   templateUrl: './moderator-sign-up.component.html',
   styleUrls: ['./moderator-sign-up.component.scss'],
-  imports: [NgIf, CommonModule, FormsModule]
+  imports: [NgIf, CommonModule, FormsModule],
 })
 export class ModeratorSignupComponent {
   username = '';
@@ -26,26 +25,26 @@ export class ModeratorSignupComponent {
     const userData = {
       username: this.username,
       email: this.email,
-      password: this.password
+      password: this.password,
     };
 
     this.authService.signup(userData).subscribe({
-      next: res => {
+      next: (res) => {
         Swal.fire({
           title: 'Success!',
           text: res.message || 'User account created successfully.',
           icon: 'success',
           confirmButtonColor: '#3085d6',
-          confirmButtonText: 'OK'
+          confirmButtonText: 'OK',
         }).then(() => {
           this.username = '';
           this.email = '';
           this.password = '';
         });
       },
-      error: err => {
+      error: (err) => {
         this.error = err.error.message || 'Signup failed';
-      }
+      },
     });
   }
 }

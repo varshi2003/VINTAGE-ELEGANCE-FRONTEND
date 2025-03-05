@@ -1,151 +1,112 @@
 
+@use "sass:color";
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap");
 
-body {
-  background: #fffaf0;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Noto Sans", serif;
-}
+$accent-color: #f5f5dc;
+$background-color: #fef9e7;
+$font-color: #85754e;
+$save-button-color: #85754e;
+$save-button-hover: darken($save-button-color, 10%);
 
 .view-services-container {
-  background: #fffaf0;
-  padding: 30px;
-  border-radius: 12px;
+  width: 95%;
+  max-width: 1100px;
   margin: auto;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Noto Sans", sans-serif;
+  color: $font-color;
+}
+
+h2 {
   text-align: center;
-  border: 2px solid #d4a373;
-  font-family: "Noto Sans", serif;
-  color: #6d4c41;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: $font-color;
+}
 
-  h2 {
-    color: #6d4c41;
-    font-size: 26px;
-    font-weight: bolder;
-    text-transform: uppercase;
-  }
+.filter-section {
+  text-align: center;
+  margin-bottom: 20px;
 
-  .error {
-    color: red;
+  label {
+    font-size: 1.2rem;
     font-weight: bold;
-    margin-bottom: 10px;
-    background: #fff3f3;
-    padding: 8px;
+    color: $font-color;
+    margin-right: 10px;
+  }
+
+  button {
+    padding: 10px 15px;
+    border: none;
+    font-weight: bold;
     border-radius: 5px;
-    border: 1px solid red;
-    display: inline-block;
-  }
+    background-color: $save-button-color;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin: 0 5px;
 
-  .filter-section {
-    margin-bottom: 20px;
-    padding: 15px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
-
-    label {
-      font-size: 16px;
-      font-weight: bold;
-      color: #6d4c41;
-      margin-right: 10px;
+    &:hover {
+      background-color: $save-button-hover;
     }
 
-    button {
-      padding: 10px 15px;
-      margin: 5px;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
-      background: #d4a373;
-      color: white;
-      border-radius: 6px;
-      transition: 0.3s ease-in-out;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-
-      &.active {
-        background: #6d4c41;
-      }
-
-      &:hover {
-        background: #8b5e3c;
-      }
-    }
-  }
-
-  .services-section,
-  .stylists-section {
-    margin-top: 20px;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
-    text-align: left;
-
-    h3 {
-      color: #6d4c41;
-      font-size: 20px;
-      font-weight: bold;
-      border-bottom: 2px solid #d4a373;
-      padding-bottom: 5px;
-      margin-bottom: 15px;
-    }
-
-    .loading {
-      font-size: 16px;
-      font-weight: bold;
-      color: #8b5e3c;
-      animation: pulse 1.5s infinite alternate;
-    }
-
-    .no-data {
-      font-size: 16px;
-      font-weight: bold;
-      color: red;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-
-      li {
-        background: #fffaf0;
-        padding: 12px;
-        border-radius: 8px;
-        box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.15);
-        display: flex;
-        justify-content: space-between;
-        font-size: 18px;
-        font-weight: bold;
-        color: #6d4c41;
-        transition: transform 0.3s ease-in-out;
-
-        &:hover {
-          background: #f0dbc1;
-          transform: translateY(-3px);
-          box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.25);
-        }
-
-        .price {
-          font-weight: bold;
-          color: #d4a373;
-        }
-      }
+    &.active {
+      background-color: darken($save-button-color, 15%);
     }
   }
 }
 
-@keyframes pulse {
-  0% {
-    opacity: 0.6;
+.services-section,
+.stylists-section {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: lighten($accent-color, 10%);
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #85754e;
+    font-weight: bolder;
   }
-  100% {
-    opacity: 1;
+
+  .loading {
+    text-align: center;
+    font-size: 1.2rem;
+    color: $font-color;
   }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    
+    li {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      font-size: 1.1rem;
+      color: $font-color;
+    }
+
+    li:last-child {
+      border-bottom: none;
+    }
+
+    .price {
+      font-weight: bold;
+      color: darken($font-color, 10%);
+    }
+  }
+}
+
+.no-data {
+  text-align: center;
+  color: red;
+  font-size: 1.2rem;
+  margin-top: 15px;
 }

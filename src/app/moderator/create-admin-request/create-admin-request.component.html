@@ -1,0 +1,62 @@
+<form
+  [formGroup]="requestForm"
+  (ngSubmit)="submitRequest()"
+  class="request-form"
+>
+  <h2 class="title">Add a Request</h2>
+  <label>Select State:</label>
+  <select formControlName="state" (change)="fetchCities()">
+    <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+  </select>
+
+  <label>Select City:</label>
+  <select formControlName="city" (change)="fetchOutlets()">
+    <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+  </select>
+
+  <label>Select Outlet:</label>
+  <select formControlName="outlet">
+    <option *ngFor="let outlet of outlets" [value]="outlet">
+      {{ outlet }}
+    </option>
+  </select>
+
+  <label>Services:</label>
+  <div formArrayName="services">
+    <div
+      *ngFor="let service of services.controls; let i = index"
+      [formGroupName]="i"
+      class="service-box"
+    >
+      <input formControlName="serviceName" placeholder="Service Name" />
+      <input formControlName="cost" placeholder="Cost" type="number" />
+      <select formControlName="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+    </div>
+  </div>
+  <button type="button" (click)="addService()" class="add-btn">
+    + Add Service
+  </button>
+
+  <label>Stylists:</label>
+  <div formArrayName="stylists">
+    <div
+      *ngFor="let stylist of stylists.controls; let i = index"
+      [formGroupName]="i"
+      class="stylist-box"
+    >
+      <input formControlName="name" placeholder="Stylist Name" />
+      <select formControlName="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+    </div>
+  </div>
+  <button type="button" (click)="addStylist()" class="add-btn">
+    + Add Stylist
+  </button>
+
+  <button type="submit" class="submit-btn">Submit Request</button>
+</form>

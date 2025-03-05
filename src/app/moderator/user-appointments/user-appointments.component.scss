@@ -105,3 +105,35 @@ button {
   font-size: 1.2rem;
   margin-top: 15px;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 30px auto;
+  padding: 10px 0;
+}
+
+.pagination button {
+  background-color: $save-button-color;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.pagination button:disabled {
+  background-color: #f5f5dc;
+      cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 1.2rem;
+    color: $font-color;
+    text-align: center;
+}

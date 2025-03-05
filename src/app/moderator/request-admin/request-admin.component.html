@@ -1,97 +1,94 @@
-<div class="request-admin-container">
+<div class="salon-list-container">
   <h2>Request Admin</h2>
-  <form
-    [formGroup]="requestForm"
-    (ngSubmit)="submitRequest()"
-    class="request-form"
-  >
-    <label>Select State:</label>
-    <select formControlName="state" (change)="fetchCities()">
-      <option *ngFor="let state of states" [value]="state">{{ state }}</option>
-    </select>
-
-    <label>Select City:</label>
-    <select formControlName="city" (change)="fetchOutlets()">
-      <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
-    </select>
-
-    <label>Select Outlet:</label>
-    <select formControlName="outlet">
-      <option *ngFor="let outlet of outlets" [value]="outlet">
-        {{ outlet }}
-      </option>
-    </select>
-
-    <label>Services:</label>
-    <div formArrayName="services">
-      <div
-        *ngFor="let service of services.controls; let i = index"
-        [formGroupName]="i"
-        class="service-box"
-      >
-        <input formControlName="serviceName" placeholder="Service Name" />
-        <input formControlName="cost" placeholder="Cost" type="number" />
-        <select formControlName="gender">
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-        </select>
-      </div>
-    </div>
-    <button type="button" (click)="addService()" class="add-btn">
-      + Add Service
-    </button>
-
-    <label>Stylists:</label>
-    <div formArrayName="stylists">
-      <div
-        *ngFor="let stylist of stylists.controls; let i = index"
-        [formGroupName]="i"
-        class="stylist-box"
-      >
-        <input formControlName="name" placeholder="Stylist Name" />
-        <select formControlName="gender">
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-        </select>
-      </div>
-    </div>
-    <button type="button" (click)="addStylist()" class="add-btn">
-      + Add Stylist
-    </button>
-
-    <button type="submit" class="submit-btn">Submit Request</button>
-  </form>
+  <button class="create-btn" routerLink="/moderator/create-admin-request">
+    Add Request
+  </button>
 
   <div *ngIf="requests.length === 0" class="no-requests">
     <p>No requests found for the selected outlet.</p>
   </div>
-  <div></div>
+
   <table *ngIf="requests.length > 0" class="request-table">
-    <tr>
-      <th>Request ID</th>
-      <th>Service</th>
-      <th>Stylist</th>
-      <th>Status</th>
-      <th>Message</th>
-    </tr>
-    <tr *ngFor="let request of requests">
-      <td>{{ request.id }}</td>
-      <td>
+    <thead>
+      <tr>
+        <th>Request ID</th>
+        <th>Service</th>
+        <th>Stylist</th>
+        <th>Status</th>
+        <th>Message</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let request of paginatedRequests">
+        <td>{{ request.id }}</td>
+        <td>
+          <button
+            class="view-btn"
+            (click)="openDialog('service', request.services)"
+          >
+            View Services
+          </button>
+        </td>
+        <td>
+          <button
+            class="view-btn"
+            (click)="openDialog('stylist', request.stylists)"
+          >
+            View Stylists
+          </button>
+        </td>
+        <td>{{ request.status }}</td>
+        <td>
+          <button
+            class="view-btn"
+            (click)="openDialog('message', request.adminMessage)"
+          >
+            View Message
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination" *ngIf="totalPages > 1">
+    <button
+      class="view-btn"
+      (click)="goToPage(currentPage - 1)"
+      [disabled]="currentPage === 1"
+    >
+      Previous
+    </button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button
+      class="view-btn"
+      (click)="goToPage(currentPage + 1)"
+      [disabled]="currentPage === totalPages"
+    >
+      Next
+    </button>
+  </div>
+
+  <div class="dialog-overlay" *ngIf="isDialogOpen">
+    <div class="dialog-box">
+      <h3>{{ dialogTitle }}</h3>
+      <div *ngIf="dialogType === 'service'">
         <ul>
-          <li *ngFor="let service of request.services">
-            {{ service.serviceName }} ({{ service.cost }})
+          <li *ngFor="let service of dialogData">
+            {{ service.serviceName }} - ₹{{ service.cost }}
           </li>
         </ul>
-      </td>
-      <td>
+      </div>
+      <div *ngIf="dialogType === 'stylist'">
         <ul>
-          <li *ngFor="let stylist of request.stylists">
+          <li *ngFor="let stylist of dialogData">
             {{ stylist.name }}
           </li>
         </ul>
-      </td>
-      <td>{{ request.status }}</td>
-      <td>{{ request.adminMessage }}</td>
-    </tr>
-  </table>
+      </div>
+      <div *ngIf="dialogType === 'message'">
+        <p>{{ dialogData }}</p>
+      </div>
+      <button class="close-btn" (click)="closeDialog()">Close</button>
+    </div>
+  </div>
 </div>

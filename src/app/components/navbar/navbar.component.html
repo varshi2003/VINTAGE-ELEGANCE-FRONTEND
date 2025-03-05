@@ -1,20 +1,40 @@
 <mat-toolbar color="primary" class="navbar">
   <img src="vintage_elegance.png" alt="Vintage Elegance" class="logo" />
   <span class="spacer"></span>
-  <button mat-button routerLink="/">Home</button>
+  <button
+    mat-button
+    routerLink="/"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    Home
+  </button>
 
   <mat-menu #servicesMenu="matMenu">
-    <button mat-menu-item routerLink="/haircare">Haircare</button>
-    <button mat-menu-item routerLink="/skincare">Skincare</button>
-    <button mat-menu-item routerLink="/bodycare">Bodycare</button>
+    <button mat-menu-item routerLink="/haircare" routerLinkActive="active-link">
+      Haircare
+    </button>
+    <button mat-menu-item routerLink="/skincare" routerLinkActive="active-link">
+      Skincare
+    </button>
+    <button mat-menu-item routerLink="/bodycare" routerLinkActive="active-link">
+      Bodycare
+    </button>
   </mat-menu>
 
-  <button mat-button [matMenuTriggerFor]="servicesMenu">Services</button>
+  <button
+    mat-button
+    [matMenuTriggerFor]="servicesMenu"
+    routerLinkActive="active-link"
+  >
+    Services
+  </button>
 
   <ng-container *ngIf="currentUser$ | async as user; else loginTpl">
     <button
       mat-button
-      routerLink="/admin/signup"
+      routerLink="/admin/create-moderator"
+      routerLinkActive="active-link"
       *ngIf="authService.hasRole('ROLE_ADMIN')"
     >
       Create Moderator
@@ -22,6 +42,7 @@
     <button
       mat-button
       routerLink="/moderator/signup"
+      routerLinkActive="active-link"
       *ngIf="authService.hasRole('ROLE_MODERATOR')"
     >
       Create User
@@ -30,6 +51,8 @@
   </ng-container>
 
   <ng-template #loginTpl>
-    <button mat-button routerLink="/login">Login</button>
+    <button mat-button routerLink="/login" routerLinkActive="active-link">
+      Login
+    </button>
   </ng-template>
 </mat-toolbar>
