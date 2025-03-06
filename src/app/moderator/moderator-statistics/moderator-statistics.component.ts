@@ -32,6 +32,10 @@ export class ModeratorStatisticsComponent implements OnInit, AfterViewInit {
   years: string[] = [];
   months: string[] = moment.months();
 
+  serviceStats: { name: string; count: number }[] = [];
+  @ViewChild('serviceChart') serviceChartRef!: ElementRef;
+  serviceChart!: Chart;
+
   @ViewChild('revenueChart') revenueChartRef!: ElementRef;
   revenueChart!: Chart;
 
@@ -49,6 +53,7 @@ export class ModeratorStatisticsComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.initChart();
+    this.initServiceChart();
   }
 
   fetchAppointments(): void {
@@ -104,24 +109,71 @@ export class ModeratorStatisticsComponent implements OnInit, AfterViewInit {
     this.uniqueCustomers = uniqueCustomerNames.size;
 
     const stylistMap = new Map<string, number>();
+    const serviceMap = new Map<string, number>();
 
     this.filteredAppointments.forEach((appt) => {
       appt.stylists.forEach((stylist) => {
         stylistMap.set(stylist, (stylistMap.get(stylist) || 0) + 1);
       });
+
+      appt.services.forEach((service) => {
+        serviceMap.set(service.name, (serviceMap.get(service.name) || 0) + 1);
+      });
     });
 
-    this.stylistStats = Array.from(stylistMap, ([name, serviceCount]) => {
-      let bonus = serviceCount >= 5 ? Math.floor(serviceCount / 5) * 2 : 0;
-      return { name, serviceCount, bonus };
-    });
+    this.stylistStats = Array.from(stylistMap, ([name, serviceCount]) => ({
+      name,
+      serviceCount,
+      bonus: serviceCount >= 5 ? Math.floor(serviceCount / 5) * 2 : 0,
+    }));
 
+    this.serviceStats = Array.from(serviceMap, ([name, count]) => ({
+      name,
+      count,
+    }));
+
+    this.updateServiceChart();
     this.updateChart();
   }
 
   setFilter(filter: string): void {
     this.filterType = filter;
     this.applyFilter();
+  }
+
+  initServiceChart(): void {
+    this.serviceChart = new Chart(this.serviceChartRef.nativeElement, {
+      type: 'bar',
+      data: {
+        labels: [],
+        datasets: [
+          {
+            label: 'Service Booking Count',
+            data: [],
+            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    });
+  }
+
+  updateServiceChart(): void {
+    const labels = this.serviceStats.map((s) => s.name);
+    const data = this.serviceStats.map((s) => s.count);
+
+    this.serviceChart.data.labels = labels;
+    this.serviceChart.data.datasets[0].data = data;
+    this.serviceChart.update();
   }
 
   updateChart(): void {

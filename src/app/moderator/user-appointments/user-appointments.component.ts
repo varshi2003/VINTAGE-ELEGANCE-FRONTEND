@@ -34,7 +34,7 @@ export class UserAppointmentsComponent implements OnInit {
         next: (data) => {
           this.appointments = data;
           this.totalPages = Math.ceil(this.appointments.length / this.itemsPerPage);
-          this.currentPage = 1; // Reset to first page after fetching new data
+          this.currentPage = 1; 
         },
       });
   }
